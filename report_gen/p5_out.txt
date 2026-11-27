@@ -1,0 +1,62 @@
+  // ================= PAGE 5: APPROVAL AND EVALUATION SHEET =================
+  pages.push(`
+  <section class="report-page" id="page-5" data-page="4">
+    ${renderHeader(5)}
+    <div class="page-content" style="justify-content: space-between;">
+      <div>
+        <h1 class="chapter-title" style="text-align: center; border-bottom: 2px solid #8B0000; padding-bottom: 4px; font-size: 12pt;">APPROVAL AND EVALUATION SHEET</h1>
+        <p style="font-size: 8.5pt; line-height: 1.35; margin: 4px 0 8px 0;">
+          This Capstone Final Project Report entitled <b>"Cloud-Native API Gateway and Service Mesh Architecture"</b> submitted by the four team members of <b>Batch 139</b> is evaluated and approved by the Departmental Capstone Evaluation Committee for the award of the degree of <b>Bachelor of Technology in Computer Science and Engineering</b>.
+        </p>
+
+        <div style="font-size: 8.5pt; font-weight: bold; text-align: center; color: #1E3A8A; margin-bottom: 4px;">
+          Evaluation Panel Rubric and Assessment Summary
+        </div>
+        <table class="data-table" style="font-size: 7.8pt;">
+          <thead>
+            <tr>
+              <th style="width: 6%;">S.No</th>
+              <th style="width: 62%;">Evaluation Dimension</th>
+              <th style="width: 14%; text-align: center;">Max Marks</th>
+              <th style="width: 18%; text-align: center;">Examiner Sign-off</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>Problem Definition, Mandate &amp; Scope Rigor (Ch 1)</td><td style="text-align: center;">10</td><td style="text-align: center; color: #047857; font-weight: bold;">Satisfactory / Verified</td></tr>
+            <tr><td>2</td><td>Literature Review, Standards &amp; Gap Identification (Ch 2)</td><td style="text-align: center;">10</td><td style="text-align: center; color: #047857; font-weight: bold;">Satisfactory / Verified</td></tr>
+            <tr><td>3</td><td>Requirements Specification &amp; ISO 25010 Quality Targets (Ch 3)</td><td style="text-align: center;">10</td><td style="text-align: center; color: #047857; font-weight: bold;">Satisfactory / Verified</td></tr>
+            <tr><td>4</td><td>System Architecture, C4 Models &amp; ADR Quality (Ch 4)</td><td style="text-align: center;">15</td><td style="text-align: center; color: #047857; font-weight: bold;">Satisfactory / Verified</td></tr>
+            <tr><td>5</td><td>Engineering Realisation, Code Quality &amp; CI/CD (Ch 5)</td><td style="text-align: center;">20</td><td style="text-align: center; color: #047857; font-weight: bold;">Satisfactory / Verified</td></tr>
+            <tr><td>6</td><td>Testing Rigor, Chaos Fault Injection &amp; Verification (Ch 6)</td><td style="text-align: center;">15</td><td style="text-align: center; color: #047857; font-weight: bold;">Satisfactory / Verified</td></tr>
+            <tr><td>7</td><td>Empirical Results, SLA Benchmarking &amp; Discussion (Ch 7)</td><td style="text-align: center;">10</td><td style="text-align: center; color: #047857; font-weight: bold;">Satisfactory / Verified</td></tr>
+            <tr><td>8</td><td>Outcomes, SDG Impact &amp; Techno-Economic Feasibility (Ch 8)</td><td style="text-align: center;">5</td><td style="text-align: center; color: #047857; font-weight: bold;">Satisfactory / Verified</td></tr>
+            <tr><td>9</td><td>Execution Integrity, Review Gate Closure &amp; Viva Voce (Ch 9-10)</td><td style="text-align: center;">5</td><td style="text-align: center; color: #047857; font-weight: bold;">Satisfactory / Verified</td></tr>
+            <tr style="background: #eff6ff; font-weight: bold; border-top: 1.5px solid #1e40af;">
+              <td colspan="2" style="text-align: right; color: #1e3a8a;">TOTAL EVALUATION SCORE:</td>
+              <td style="text-align: center; color: #1e3a8a; font-size: 8.5pt;">100</td>
+              <td style="text-align: center; color: #15803d; font-size: 8.5pt;">RECOMMENDED FOR AWARD</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="margin-top: 15px; border-top: 1px solid #e2e8f0; padding-top: 15px;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 8.5pt;">
+          <tr>
+            <td style="width: 50%; padding: 6px;">
+              <b>Internal Examiner:</b><br><br>
+              Signature: _________________________<br><br>
+              Date: ____ / ____ / 2026
+            </td>
+            <td style="width: 50%; padding: 6px;">
+              <b>External Examiner:</b><br><br>
+              Signature: _________________________<br><br>
+              Date: ____ / ____ / 2026
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    ${renderFooter(5)}
+  </section>
+  `);

@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 250" width="100%" height="auto" style="max-height: 230px; font-family: 'Times New Roman', serif;">
+  <rect x="5" y="5" width="840" height="240" rx="6" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1.5"/>
+  <rect x="5" y="5" width="840" height="26" rx="6" fill="#1A365D"/>
+  <rect x="5" y="16" width="840" height="15" fill="#1A365D"/>
+  <text x="425" y="21" fill="#FFFFFF" font-size="11.5" font-weight="bold" text-anchor="middle">FIGURE 4.8: ZERO-TRUST SPIFFE IDENTITY ISSUANCE &amp; MUTUAL TLS HANDSHAKE FLOW</text>
+
+  <!-- Top: Citadel CA -->
+  <g transform="translate(275, 36)">
+    <rect width="300" height="42" rx="4" fill="#EBF8FF" stroke="#3182CE" stroke-width="1.5"/>
+    <text x="150" y="18" fill="#2B6CB0" font-size="9.5" font-weight="bold" text-anchor="middle">Istio Citadel CA (In-Cluster SPIFFE Authority)</text>
+    <text x="150" y="32" fill="#718096" font-size="8" text-anchor="middle">Issues X.509 SVIDs with SAN: spiffe://cluster.local/ns/prod/sa/&lt;name&gt;</text>
+  </g>
+
+  <!-- Left: Client Pod -->
+  <g transform="translate(30, 95)">
+    <rect width="230" height="135" rx="5" fill="#FFFFFF" stroke="#3182CE"/>
+    <rect width="230" height="20" rx="5" fill="#3182CE"/>
+    <text x="115" y="15" fill="#FFFFFF" font-size="8.5" font-weight="bold" text-anchor="middle">CLIENT POD (Order Service)</text>
+    <rect x="10" y="28" width="210" height="40" rx="3" fill="#F7FAFC" stroke="#E2E8F0"/>
+    <text x="115" y="44" fill="#1A365D" font-size="8" font-weight="bold" text-anchor="middle">Envoy Sidecar (Client)</text>
+    <text x="115" y="58" fill="#718096" font-size="7.5" text-anchor="middle">Owns: X.509 cert (order-sa) + PrivKey</text>
+
+    <rect x="10" y="74" width="210" height="50" rx="3" fill="#EBF8FF"/>
+    <text x="115" y="90" fill="#2B6CB0" font-size="7.5" font-weight="bold" text-anchor="middle">Handshake Verification Rule:</text>
+    <text x="115" y="104" fill="#4A5568" font-size="7" text-anchor="middle">Validates Server cert against Root CA</text>
+    <text x="115" y="116" fill="#4A5568" font-size="7" text-anchor="middle">Checks SAN: spiffe://.../catalog-sa</text>
+  </g>
+
+  <!-- SDS arrows from Citadel -->
+  <path d="M 340 78 L 145 95" stroke="#3182CE" stroke-width="1.5" stroke-dasharray="3 3"/>
+  <text x="210" y="85" fill="#3182CE" font-size="7" font-weight="bold">Secret Discovery (SDS)</text>
+
+  <!-- Right: Server Pod -->
+  <g transform="translate(590, 95)">
+    <rect width="230" height="135" rx="5" fill="#FFFFFF" stroke="#38A169"/>
+    <rect width="230" height="20" rx="5" fill="#38A169"/>
+    <text x="115" y="15" fill="#FFFFFF" font-size="8.5" font-weight="bold" text-anchor="middle">SERVER POD (Catalog Service)</text>
+    <rect x="10" y="28" width="210" height="40" rx="3" fill="#F7FAFC" stroke="#E2E8F0"/>
+    <text x="115" y="44" fill="#22543D" font-size="8" font-weight="bold" text-anchor="middle">Envoy Sidecar (Server)</text>
+    <text x="115" y="58" fill="#718096" font-size="7.5" text-anchor="middle">Owns: X.509 cert (catalog-sa) + PrivKey</text>
+
+    <rect x="10" y="74" width="210" height="50" rx="3" fill="#F0FFF4"/>
+    <text x="115" y="90" fill="#22543D" font-size="7.5" font-weight="bold" text-anchor="middle">Handshake Verification Rule:</text>
+    <text x="115" y="104" fill="#4A5568" font-size="7" text-anchor="middle">Requests client cert (mTLS)</text>
+    <text x="115" y="116" fill="#4A5568" font-size="7" text-anchor="middle">Enforces AuthorizationPolicy (order-sa allowed)</text>
+  </g>
+
+  <!-- SDS arrow to server -->
+  <path d="M 510 78 L 705 95" stroke="#38A169" stroke-width="1.5" stroke-dasharray="3 3"/>
+  <text x="640" y="85" fill="#38A169" font-size="7" font-weight="bold">Secret Discovery (SDS)</text>
+
+  <!-- Handshake in middle -->
+  <g transform="translate(275, 110)">
+    <rect width="300" height="110" rx="4" fill="#FFF5F5" stroke="#E53E3E" stroke-width="1.2"/>
+    <text x="150" y="18" fill="#9B2C2C" font-size="8.5" font-weight="bold" text-anchor="middle">TLS 1.3 MUTUAL AUTHENTICATION CHANNEL</text>
+    
+    <path d="M 15 35 L 285 35" stroke="#E53E3E" stroke-width="1.5"/>
+    <polygon points="285,32 292,35 285,38" fill="#E53E3E"/>
+    <text x="150" y="30" fill="#C53030" font-size="7.5" text-anchor="middle">1. ClientHello + TLS 1.3 KeyShare (ECDH)</text>
+
+    <path d="M 285 55 L 15 55" stroke="#38A169" stroke-width="1.5"/>
+    <polygon points="15,52 8,55 15,58" fill="#38A169"/>
+    <text x="150" y="50" fill="#22543D" font-size="7.5" text-anchor="middle">2. ServerHello + Certificate (catalog-sa) + CertRequest</text>
+
+    <path d="M 15 75 L 285 75" stroke="#E53E3E" stroke-width="1.5"/>
+    <polygon points="285,72 292,75 285,78" fill="#E53E3E"/>
+    <text x="150" y="70" fill="#C53030" font-size="7.5" text-anchor="middle">3. Client Certificate (order-sa) + Finished</text>
+
+    <rect x="25" y="84" width="250" height="20" rx="3" fill="#FFFFFF"/>
+    <text x="150" y="98" fill="#2B6CB0" font-size="7.5" font-weight="bold" text-anchor="middle">Encrypted Session Established (100% Zero-Trust)</text>
+  </g>
+</svg>

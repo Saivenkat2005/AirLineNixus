@@ -1,0 +1,39 @@
+name: 4. AI Security & Adversarial Red-Teaming (Promptfoo)
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  adversarial-security:
+    name: Promptfoo & OWASP Top-10 LLM Security Gates
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js 18
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Install AI Dependencies & Test Runners
+        run: |
+          cd ai-service
+          pip install -r requirements.txt pytest pytest-asyncio
+
+      - name: Run Injection, PII & Authorization Security Tests
+        run: |
+          PYTHONPATH=ai-service pytest tests/api/test_security_authorization.py -v
+
+      - name: Run Promptfoo Matrix Evaluation
+        run: |
+          npx promptfoo eval -c ai-evaluation/promptfoo/promptfoo.yaml --no-cache || true

@@ -1,0 +1,14 @@
+const fs = require('fs');
+const orig = fs.readFileSync('report_gen/prelim_pages.js', 'utf8');
+const declRaw = fs.readFileSync('report_gen/decl_raw.txt', 'utf8');
+const certRaw = fs.readFileSync('report_gen/cert_raw.txt', 'utf8');
+let p3 = declRaw.split('<div style="border-top: 1.5px dashed #cbd5e1; padding-top: 8px; margin-top: 4px;">').join('');
+p3 = p3.split('font-size: 8.2pt; line-height: 1.32;').join('font-size: 9.5pt; line-height: 1.65; margin: 18px 0; padding: 16px 20px;');
+p3 = p3.split('font-size: 7.8pt; margin-top: 6px;').join('font-size: 8.8pt; margin-top: 35px; line-height: 1.6;');
+p3 = p3.split('padding: 3px 4px;').join('padding: 10px 8px;');
+p3 = p3.split('padding-bottom: 3px; font-size: 11pt;').join('padding-bottom: 6px; font-size: 13pt; letter-spacing: 1px; margin-bottom: 20px;');
+p3 = p3.split('STUDENT DECLARATION').join('CANDIDATES DECLARATION');
+p3 = p3.split('justify-content: space-between;').join('justify-content: space-between; padding-top: 15px; padding-bottom: 10px;');
+p3 = p3 + '\n    </div>\n    \n  </section>\n  );';
+fs.writeFileSync('report_gen/p3_out.txt', p3, 'utf8');
+console.log('Wrote p3_out.txt successfully');

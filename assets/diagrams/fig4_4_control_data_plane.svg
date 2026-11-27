@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 240" width="100%" height="auto" style="max-height: 220px; font-family: 'Times New Roman', serif;">
+  <rect x="5" y="5" width="840" height="230" rx="6" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1.5"/>
+  <rect x="5" y="5" width="840" height="26" rx="6" fill="#1A365D"/>
+  <rect x="5" y="16" width="840" height="15" fill="#1A365D"/>
+  <text x="425" y="21" fill="#FFFFFF" font-size="11.5" font-weight="bold" text-anchor="middle">FIGURE 4.4: SERVICE MESH CONTROL PLANE (ISTIOD) AND DATA PLANE (ENVOY) INTERACTION</text>
+
+  <!-- Control Plane Block -->
+  <g transform="translate(30, 42)">
+    <rect width="250" height="180" rx="5" fill="#EBF8FF" stroke="#3182CE" stroke-width="1.5"/>
+    <rect width="250" height="24" rx="5" fill="#3182CE"/>
+    <text x="125" y="17" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">ISTIO CONTROL PLANE (istiod)</text>
+    
+    <rect x="12" y="34" width="226" height="38" rx="3" fill="#FFFFFF" stroke="#BEE3F8"/>
+    <text x="125" y="50" fill="#1A365D" font-size="8.5" font-weight="bold" text-anchor="middle">Pilot (xDS Service Discovery)</text>
+    <text x="125" y="64" fill="#718096" font-size="7.5" text-anchor="middle">Translates K8s services into dynamic Envoy configs</text>
+
+    <rect x="12" y="80" width="226" height="38" rx="3" fill="#FFFFFF" stroke="#BEE3F8"/>
+    <text x="125" y="96" fill="#1A365D" font-size="8.5" font-weight="bold" text-anchor="middle">Citadel (SPIFFE Certificate Authority)</text>
+    <text x="125" y="110" fill="#718096" font-size="7.5" text-anchor="middle">Issues short-lived X.509 mTLS certs (24h rotation)</text>
+
+    <rect x="12" y="126" width="226" height="38" rx="3" fill="#FFFFFF" stroke="#BEE3F8"/>
+    <text x="125" y="142" fill="#1A365D" font-size="8.5" font-weight="bold" text-anchor="middle">Galley (Configuration Validation)</text>
+    <text x="125" y="156" fill="#718096" font-size="7.5" text-anchor="middle">Validates VirtualService &amp; DestinationRule CRDs</text>
+  </g>
+
+  <!-- xDS Arrows -->
+  <g transform="translate(290, 80)">
+    <path d="M 0 20 L 140 20" stroke="#3182CE" stroke-width="2.5"/>
+    <polygon points="140,16 148,20 140,24" fill="#3182CE"/>
+    <text x="70" y="12" fill="#2B6CB0" font-size="9" font-weight="bold" text-anchor="middle">gRPC xDS Discovery</text>
+    <text x="70" y="35" fill="#718096" font-size="8" text-anchor="middle">LDS, RDS, CDS, EDS</text>
+
+    <path d="M 148 65 L 8 65" stroke="#38A169" stroke-width="2" stroke-dasharray="4 4"/>
+    <polygon points="8,61 0,65 8,69" fill="#38A169"/>
+    <text x="70" y="58" fill="#22543D" font-size="8" font-weight="bold" text-anchor="middle">SPIFFE SDS Cert Request</text>
+  </g>
+
+  <!-- Data Plane Block -->
+  <g transform="translate(450, 42)">
+    <rect width="370" height="180" rx="5" fill="#F0FFF4" stroke="#38A169" stroke-width="1.5"/>
+    <rect width="370" height="24" rx="5" fill="#38A169"/>
+    <text x="185" y="17" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">DATA PLANE: APPLICATION POD &amp; ENVOY SIDECAR</text>
+
+    <!-- Sidecar Container -->
+    <rect x="15" y="34" width="160" height="130" rx="4" fill="#FFFFFF" stroke="#4A5568" stroke-width="1.2"/>
+    <rect x="15" y="34" width="160" height="20" rx="4" fill="#4A5568"/>
+    <text x="95" y="48" fill="#FFFFFF" font-size="8.5" font-weight="bold" text-anchor="middle">Envoy Proxy Sidecar (:15001)</text>
+    <text x="95" y="70" fill="#2D3748" font-size="8">• mTLS Handshake &amp; Cipher</text>
+    <text x="95" y="85" fill="#2D3748" font-size="8">• Connection Pooling &amp; Retries</text>
+    <text x="95" y="100" fill="#2D3748" font-size="8">• Circuit Breaker Outlier Eject</text>
+    <text x="95" y="115" fill="#2D3748" font-size="8">• Canary Traffic Weights</text>
+    <text x="95" y="130" fill="#2D3748" font-size="8">• Telemetry Exporter (:15090)</text>
+    <text x="95" y="145" fill="#C53030" font-size="7.5" font-weight="bold">RAM: ~46.2 MB | CPU: &lt;65m</text>
+
+    <!-- iptables Loopback -->
+    <path d="M 180 85 L 205 85" stroke="#E53E3E" stroke-width="2"/>
+    <polygon points="205,81 213,85 205,89" fill="#E53E3E"/>
+    <text x="195" y="78" fill="#E53E3E" font-size="7" font-weight="bold">loopback</text>
+
+    <!-- Application Container -->
+    <g transform="translate(215, 34)">
+      <rect width="140" height="130" rx="4" fill="#FFFFFF" stroke="#3182CE"/>
+      <rect width="140" height="20" rx="4" fill="#3182CE"/>
+      <text x="70" y="48" fill="#FFFFFF" font-size="8.5" font-weight="bold" text-anchor="middle">Application Container</text>
+      <text x="70" y="75" fill="#1A365D" font-size="8.5" font-weight="bold" text-anchor="middle">Pure Business Logic</text>
+      <text x="70" y="92" fill="#4A5568" font-size="8" text-anchor="middle">• No TLS SDKs</text>
+      <text x="70" y="106" fill="#4A5568" font-size="8" text-anchor="middle">• No Circuit Code</text>
+      <text x="70" y="120" fill="#4A5568" font-size="8" text-anchor="middle">• Pure Localhost RPC</text>
+      <text x="70" y="142" fill="#276749" font-size="7.5" font-weight="bold" text-anchor="middle">24% Code Reduction</text>
+    </g>
+  </g>
+</svg>

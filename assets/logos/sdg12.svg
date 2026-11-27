@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240">
+  <rect width="240" height="240" rx="20" fill="#BF8B2E"/>
+  <text x="18" y="44" font-family="'Segoe UI', Roboto, Arial, sans-serif" font-weight="900" font-size="32" fill="#FFFFFF">12</text>
+  <text x="60" y="32" font-family="'Segoe UI', Roboto, Arial, sans-serif" font-weight="800" font-size="13" fill="#FFFFFF">RESPONSIBLE</text>
+  <text x="60" y="48" font-family="'Segoe UI', Roboto, Arial, sans-serif" font-weight="800" font-size="13" fill="#FFFFFF">CONSUMPTION &amp; PRODUCTION</text>
+  <g transform="translate(35, 90)" fill="none" stroke="#FFFFFF" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M 45 35 C 15 35, 10 10, 35 10 C 60 10, 85 55, 110 55 C 135 55, 145 35, 125 35 C 105 35, 80 -10, 45 35 Z"/>
+    <polygon points="40,2 52,12 40,22" fill="#FFFFFF" stroke="none"/>
+  </g>
+</svg>

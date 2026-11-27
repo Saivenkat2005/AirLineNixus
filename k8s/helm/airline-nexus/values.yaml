@@ -1,0 +1,104 @@
+global:
+  environment: production
+  domain: nexus.airlines.com
+
+frontend:
+  replicaCount: 3
+  image:
+    repository: nexus-airline/frontend
+    tag: 2.0.0
+    pullPolicy: IfNotPresent
+  service:
+    type: ClusterIP
+    port: 80
+  resources:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
+  autoscaling:
+    enabled: true
+    minReplicas: 3
+    maxReplicas: 15
+    targetCPUUtilizationPercentage: 70
+
+apiGateway:
+  replicaCount: 3
+  image:
+    repository: nexus-airline/api-gateway
+    tag: 2.0.0
+  service:
+    type: ClusterIP
+    port: 4000
+  resources:
+    limits:
+      cpu: 1000m
+      memory: 1Gi
+    requests:
+      cpu: 250m
+      memory: 256Mi
+  autoscaling:
+    enabled: true
+    minReplicas: 3
+    maxReplicas: 20
+    targetCPUUtilizationPercentage: 65
+
+coreService:
+  replicaCount: 4
+  image:
+    repository: nexus-airline/core-service
+    tag: 2.0.0
+  service:
+    type: ClusterIP
+    port: 8080
+  resources:
+    limits:
+      cpu: 2000m
+      memory: 2Gi
+    requests:
+      cpu: 500m
+      memory: 1Gi
+  autoscaling:
+    enabled: true
+    minReplicas: 4
+    maxReplicas: 25
+    targetCPUUtilizationPercentage: 75
+
+aiService:
+  replicaCount: 2
+  image:
+    repository: nexus-airline/ai-service
+    tag: 2.0.0
+  service:
+    type: ClusterIP
+    port: 8000
+  resources:
+    limits:
+      cpu: 1000m
+      memory: 1Gi
+    requests:
+      cpu: 200m
+      memory: 256Mi
+  autoscaling:
+    enabled: true
+    minReplicas: 2
+    maxReplicas: 10
+    targetCPUUtilizationPercentage: 80
+
+redis:
+  enabled: true
+  architecture: replication
+  auth:
+    enabled: false
+
+kafka:
+  enabled: true
+  replicaCount: 3
+
+mysql:
+  enabled: true
+  auth:
+    database: airlines
+    username: nexus_app

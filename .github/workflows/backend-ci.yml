@@ -1,0 +1,29 @@
+name: 2. Core Backend Spring Boot CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-and-test:
+    name: Spring Boot 3.1 & JPA Compilation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Java JDK 21
+        uses: actions/setup-java@v3
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Build with Maven Wrapper
+        run: |
+          cd Backend/airlines
+          chmod +x mvnw
+          ./mvnw clean compile test-compile

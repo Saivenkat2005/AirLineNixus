@@ -1,0 +1,85 @@
+PAGE 9: ABBREVIATIONS & TEAM ROLES =================
+  pages.push(`
+  <section class="report-page" id="page-9" data-page="9">
+    ${renderHeader(9)}
+    <div class="page-content" style="justify-content: space-between;">
+      <div>
+        <h1 class="chapter-title" style="text-align: center; border-bottom: 2px solid #8B0000; padding-bottom: 3px; font-size: 11pt;">LIST OF ABBREVIATIONS AND ACRONYMS</h1>
+        <table class="data-table" style="font-size: 7.5pt; line-height: 1.22;">
+          <thead>
+            <tr><th style="width: 14%;">Acronym</th><th style="width: 36%;">Full Expansion</th><th style="width: 14%;">Acronym</th><th style="width: 36%;">Full Expansion</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><b>ADR</b></td><td>Architecture Decision Record</td><td><b>OWASP</b></td><td>Open Worldwide App Security Project</td></tr>
+            <tr><td><b>API</b></td><td>Application Programming Interface</td><td><b>PDR / CDR</b></td><td>Preliminary / Critical Design Review</td></tr>
+            <tr><td><b>CA</b></td><td>Certificate Authority</td><td><b>PII</b></td><td>Personally Identifiable Information</td></tr>
+            <tr><td><b>CI/CD</b></td><td>Continuous Integration / Deployment</td><td><b>REST</b></td><td>Representational State Transfer</td></tr>
+            <tr><td><b>CNCF</b></td><td>Cloud Native Computing Foundation</td><td><b>RFC</b></td><td>Request for Comments (IETF)</td></tr>
+            <tr><td><b>CNI</b></td><td>Container Network Interface</td><td><b>RPS</b></td><td>Requests Per Second</td></tr>
+            <tr><td><b>CRD</b></td><td>Custom Resource Definition (K8s)</td><td><b>Saga</b></td><td>Compensating Distributed Transaction</td></tr>
+            <tr><td><b>CVE</b></td><td>Common Vulnerabilities &amp; Exposures</td><td><b>SDG</b></td><td>Sustainable Development Goal (UN)</td></tr>
+            <tr><td><b>DPDP</b></td><td>Digital Personal Data Protection Act</td><td><b>SPIFFE</b></td><td>Secure Production Identity Framework</td></tr>
+            <tr><td><b>eBPF</b></td><td>Extended Berkeley Packet Filter</td><td><b>SRE</b></td><td>Site Reliability Engineer</td></tr>
+            <tr><td><b>gRPC</b></td><td>Google Remote Procedure Call</td><td><b>TLS / mTLS</b></td><td>Transport Layer Security / Mutual TLS</td></tr>
+            <tr><td><b>HPA</b></td><td>Horizontal Pod Autoscaler</td><td><b>VU</b></td><td>Virtual User (Load Testing)</td></tr>
+            <tr><td><b>IEEE</b></td><td>Inst. of Electrical &amp; Electronics Eng.</td><td><b>W3C</b></td><td>World Wide Web Consortium</td></tr>
+            <tr><td><b>IETF</b></td><td>Internet Engineering Task Force</td><td><b>Wasm</b></td><td>WebAssembly</td></tr>
+            <tr><td><b>ISO/IEC</b></td><td>Intl. Organization for Standardization</td><td><b>xDS</b></td><td>Envoy Dynamic Discovery Service</td></tr>
+            <tr><td><b>JWT</b></td><td>JSON Web Token (RFC 7519)</td><td><b>KLEF</b></td><td>Koneru Lakshmaiah Education Foundation</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="border-top: 1px solid #cbd5e1; padding-top: 4px;">
+        <h2 class="section-title" style="font-size: 9.5pt; text-align: center; color: #1E3A8A; margin-top: 0; margin-bottom: 3px;">
+          TEAM COMPOSITION AND WORK PACKAGE DISTRIBUTION (TABLE 1.3)
+        </h2>
+        <table class="data-table" style="font-size: 7.2pt; line-height: 1.2;">
+          <thead>
+            <tr>
+              <th style="width: 22%;">Team Member</th>
+              <th style="width: 18%;">Assigned Role</th>
+              <th style="width: 42%;">Owned Objectives &amp; Substantive Work</th>
+              <th style="width: 18%;">Verifiable Artifact</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>BANDARU SAI VENKAT RAM</b><br><span style="color:#64748b;">ID: 2300031764</span></td>
+              <td>Lead Architect &amp; Cloud Engineer</td>
+              <td>Owned O1 &amp; O4. Formalized C4 models, OpenAPI contracts, Kong Ingress gateway, and Istio VirtualService canary traffic routing.</td>
+              <td><code>E-ARC-001</code> (C4 Models, ADRs, Ingress Configs)</td>
+            </tr>
+            <tr>
+              <td><b>DAVULURI BALA GOPAL</b><br><span style="color:#64748b;">ID: 2300032878</span></td>
+              <td>DevOps &amp; Container Engineer</td>
+              <td>Owned O2 &amp; O4. Multi-stage Dockerfiles, Helm charts, Kubernetes deployments, and GitHub Actions CI/CD with Trivy scanning.</td>
+              <td><code>E-OPS-001</code> (Dockerfiles, K8s Manifests, Edge Pi)</td>
+            </tr>
+            <tr>
+              <td><b>AKARAMSETTY SIVA SAI</b><br><span style="color:#64748b;">ID: 2300033233</span></td>
+              <td>Backend Microservices Developer</td>
+              <td>Owned O3. Developed Go Auth Service, Python FastAPI Flight &amp; Seat Service, Spring Boot Saga Booking Coordinator, and unit test suites.</td>
+              <td><code>E-SRC-001</code> (Microservice Repositories, Unit Tests)</td>
+            </tr>
+            <tr>
+              <td><b>ROHID BAIG</b><br><span style="color:#64748b;">ID: 2300039146</span></td>
+              <td>System Integration &amp; Project Lead</td>
+              <td>Owned O5. Configured Prometheus, Grafana, and Jaeger telemetry; executed k6 load tests and Chaos Mesh experiments; compiled final report.</td>
+              <td><code>E-TST-002</code> (Telemetry Dashboards, k6 Logs)</td>
+            </tr>
+          </tbody>
+        </table>
+        <div style="font-size: 7.2pt; color: #475569; text-align: center; margin-top: 2px;">
+          Table 1.3: Two-Semester Engineering Work Package Allocation and Traceable Deliverables Matrix
+        </div>
+      </div>
+    </div>
+    ${renderFooter(9)}
+  </section>
+  `);
+
+  return pages;
+}
+
+module.exports = { getPrelimPages };

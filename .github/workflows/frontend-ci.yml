@@ -1,0 +1,44 @@
+name: 1. Frontend CI & Playwright Quality Gate
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-and-test:
+    name: Frontend Build & Playwright Smoke
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js 18
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'npm'
+          cache-dependency-path: Frontend/package-lock.json
+
+      - name: Install Frontend Dependencies
+        run: |
+          cd Frontend
+          npm ci
+
+      - name: Compile & Build Frontend (Vite)
+        run: |
+          cd Frontend
+          npm run build
+
+      - name: Install Playwright Browsers
+        run: |
+          cd automation/playwright
+          npm install
+          npx playwright install --with-deps chromium
+
+      - name: Verify Playwright Specs Syntax
+        run: |
+          cd automation/playwright
+          npx playwright test --list

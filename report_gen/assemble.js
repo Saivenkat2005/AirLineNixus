@@ -1,0 +1,12 @@
+const fs = require('fs');
+const part1 = fs.readFileSync('report_gen/part1.js', 'utf8');
+const p3 = fs.readFileSync('report_gen/p3_out.txt', 'utf8');
+const p4 = fs.readFileSync('report_gen/p4_out.txt', 'utf8');
+const p5 = fs.readFileSync('report_gen/p5_out.txt', 'utf8');
+const p6 = fs.readFileSync('report_gen/p6_out.txt', 'utf8');
+const p7 = fs.readFileSync('report_gen/p7_out.txt', 'utf8');
+const p8 = fs.readFileSync('report_gen/p8_out.txt', 'utf8');
+const p9 = fs.readFileSync('report_gen/p9_out.txt', 'utf8');
+const fullPrelim = [part1.trim(), p3.trim(), p4.trim(), p5.trim(), p6.trim(), p7.trim(), p8.trim(), p9.trim(), '  return pages;\n}\n\nmodule.exports = { getPrelimPages };'].join('\n\n');
+fs.writeFileSync('report_gen/prelim_pages.js', fullPrelim, 'utf8');
+console.log('Assembled prelim_pages.js successfully! Length:', fullPrelim.length);

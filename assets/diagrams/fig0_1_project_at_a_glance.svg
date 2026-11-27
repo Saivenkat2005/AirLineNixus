@@ -1,0 +1,203 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 300" width="100%" height="auto" style="max-height: 190px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <linearGradient id="grad-blue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E40AF" />
+      <stop offset="100%" stop-color="#1D4ED8" />
+    </linearGradient>
+    <linearGradient id="grad-green" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#047857" />
+      <stop offset="100%" stop-color="#059669" />
+    </linearGradient>
+    <linearGradient id="grad-purple" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6D28D9" />
+      <stop offset="100%" stop-color="#7C3AED" />
+    </linearGradient>
+    <linearGradient id="grad-amber" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#B45309" />
+      <stop offset="100%" stop-color="#D97706" />
+    </linearGradient>
+    <linearGradient id="grad-slate" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#334155" />
+      <stop offset="100%" stop-color="#1E293B" />
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000" flood-opacity="0.1" />
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#4B5563" />
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#2563EB" />
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="0" y="0" width="920" height="300" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5" />
+
+  <!-- Title Banner -->
+  <rect x="0" y="0" width="920" height="26" rx="6" fill="#1E3A8A" />
+  <rect x="0" y="16" width="920" height="10" fill="#1E3A8A" />
+  <text x="460" y="17" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle" letter-spacing="1">FIGURE 0.1: INTEGRATED ARCHITECTURAL MECHANISM &amp; EVIDENCE FLOW</text>
+
+  <!-- Zone 1: Client Layer -->
+  <rect x="15" y="38" width="135" height="195" rx="5" fill="#FFFFFF" stroke="#93C5FD" stroke-width="1.2" filter="url(#shadow)" />
+  <rect x="15" y="38" width="135" height="20" rx="5" fill="#DBEAFE" />
+  <text x="82" y="52" fill="#1E40AF" font-size="8.5" font-weight="bold" text-anchor="middle">CLIENT ACCESS</text>
+  
+  <rect x="23" y="66" width="119" height="42" rx="4" fill="#EFF6FF" stroke="#BFDBFE" />
+  <text x="82" y="80" fill="#1E3A8A" font-size="8" font-weight="bold" text-anchor="middle">React Frontend UI</text>
+  <text x="82" y="92" fill="#4B5563" font-size="6.8" text-anchor="middle">Web &amp; PWA (Port 80/5173)</text>
+  <text x="82" y="102" fill="#6B7280" font-size="6.5" text-anchor="middle">HTTPS / REST JSON</text>
+
+  <rect x="23" y="116" width="119" height="42" rx="4" fill="#EFF6FF" stroke="#BFDBFE" />
+  <text x="82" y="130" fill="#1E3A8A" font-size="8" font-weight="bold" text-anchor="middle">Edge Test Node</text>
+  <text x="82" y="142" fill="#4B5563" font-size="6.8" text-anchor="middle">Raspberry Pi 4 (ARM64)</text>
+  <text x="82" y="152" fill="#047857" font-size="6.5" font-weight="bold" text-anchor="middle">k6 Runner: 100-2500 VUs</text>
+
+  <rect x="23" y="166" width="119" height="58" rx="4" fill="#FEF3C7" stroke="#FDE68A" />
+  <text x="82" y="179" fill="#92400E" font-size="7.5" font-weight="bold" text-anchor="middle">Testbed Specs</text>
+  <text x="82" y="190" fill="#78350F" font-size="6.8" text-anchor="middle">Dedicated 1 Gbps LAN</text>
+  <text x="82" y="200" fill="#78350F" font-size="6.8" text-anchor="middle">Zero Cloud Hardware Cost</text>
+  <text x="82" y="212" fill="#047857" font-size="7" font-weight="bold" text-anchor="middle">Total CapEx: ₹10,300</text>
+
+  <!-- Flow Arrow Client -> Ingress -->
+  <line x1="150" y1="95" x2="175" y2="95" stroke="#2563EB" stroke-width="1.5" marker-end="url(#arrow-blue)" />
+  <text x="162" y="90" fill="#2563EB" font-size="6" font-weight="bold" text-anchor="middle">Port 443</text>
+
+  <!-- Zone 2: North-South Ingress Gateway -->
+  <rect x="175" y="38" width="145" height="195" rx="5" fill="#FFFFFF" stroke="#93C5FD" stroke-width="1.2" filter="url(#shadow)" />
+  <rect x="175" y="38" width="145" height="20" rx="5" fill="#1E40AF" />
+  <text x="247" y="52" fill="#FFFFFF" font-size="8.5" font-weight="bold" text-anchor="middle">API GATEWAY (INGRESS)</text>
+
+  <rect x="183" y="66" width="129" height="30" rx="3" fill="#F0FDF4" stroke="#BBF7D0" />
+  <text x="247" y="78" fill="#166534" font-size="7.5" font-weight="bold" text-anchor="middle">TLS 1.3 Termination</text>
+  <text x="247" y="89" fill="#15803D" font-size="6.8" text-anchor="middle">ECDHE-ECDSA Offload</text>
+
+  <rect x="183" y="100" width="129" height="30" rx="3" fill="#FEF2F2" stroke="#FECACA" />
+  <text x="247" y="112" fill="#991B1B" font-size="7.5" font-weight="bold" text-anchor="middle">Token-Bucket Rate Limiter</text>
+  <text x="247" y="123" fill="#B91C1C" font-size="6.8" text-anchor="middle">100 req/min/IP via Redis</text>
+
+  <rect x="183" y="134" width="129" height="30" rx="3" fill="#F5F3FF" stroke="#DDD6FE" />
+  <text x="247" y="146" fill="#5B21B6" font-size="7.5" font-weight="bold" text-anchor="middle">JWT Security Authenticator</text>
+  <text x="247" y="157" fill="#6D28D9" font-size="6.8" text-anchor="middle">RS256 Public Key Verify</text>
+
+  <rect x="183" y="168" width="129" height="30" rx="3" fill="#F8FAFC" stroke="#E2E8F0" />
+  <text x="247" y="180" fill="#334155" font-size="7.5" font-weight="bold" text-anchor="middle">L7 URL Routing &amp; Context</text>
+  <text x="247" y="191" fill="#475569" font-size="6.8" text-anchor="middle">/auth, /flights, /orders, /ai</text>
+
+  <rect x="183" y="202" width="129" height="24" rx="3" fill="#EFF6FF" stroke="#BFDBFE" />
+  <text x="247" y="213" fill="#1E40AF" font-size="7" font-weight="bold" text-anchor="middle">W3C Trace Injector</text>
+  <text x="247" y="222" fill="#1E40AF" font-size="6.2" text-anchor="middle">traceparent &amp; x-request-id</text>
+
+  <!-- Flow Arrow Gateway -> Mesh -->
+  <line x1="320" y1="120" x2="345" y2="120" stroke="#2563EB" stroke-width="1.5" marker-end="url(#arrow-blue)" />
+  <text x="332" y="115" fill="#2563EB" font-size="6" font-weight="bold" text-anchor="middle">mTLS</text>
+
+  <!-- Zone 3: Istio Service Mesh & Microservices -->
+  <rect x="345" y="38" width="295" height="195" rx="5" fill="#FFFFFF" stroke="#86EFAC" stroke-width="1.2" filter="url(#shadow)" />
+  <rect x="345" y="38" width="295" height="20" rx="5" fill="#047857" />
+  <text x="492" y="52" fill="#FFFFFF" font-size="8.5" font-weight="bold" text-anchor="middle">ISTIO SERVICE MESH (EAST-WEST ZERO-TRUST CLUSTER)</text>
+
+  <!-- istiod Control Plane Bar -->
+  <rect x="353" y="64" width="279" height="20" rx="3" fill="#ECFDF5" stroke="#A7F3D0" />
+  <text x="492" y="77" fill="#065F46" font-size="7.5" font-weight="bold" text-anchor="middle">istiod Control Plane: Pilot (xDS) | Citadel (SPIFFE CA) | Galley (CRD Validation)</text>
+
+  <!-- 4 Pods Grid -->
+  <!-- Pod 1: Auth -->
+  <rect x="353" y="90" width="135" height="64" rx="3" fill="#F8FAFC" stroke="#CBD5E1" />
+  <rect x="353" y="90" width="135" height="15" fill="#F1F5F9" />
+  <text x="420" y="101" fill="#1E293B" font-size="7.5" font-weight="bold" text-anchor="middle">Auth Service (Go / Node)</text>
+  <text x="420" y="115" fill="#475569" font-size="6.8" text-anchor="middle">Port 8001 | BCrypt &amp; RS256 JWT</text>
+  <rect x="357" y="122" width="127" height="26" rx="2" fill="#EFF6FF" stroke="#DBEAFE" />
+  <text x="420" y="132" fill="#1E40AF" font-size="6.5" font-weight="bold" text-anchor="middle">Envoy Proxy Sidecar (:15001)</text>
+  <text x="420" y="142" fill="#047857" font-size="6.2" text-anchor="middle">SPIFFE ID: spiffe://.../sa/auth-sa</text>
+
+  <!-- Pod 2: Flight & Catalog -->
+  <rect x="497" y="90" width="135" height="64" rx="3" fill="#F8FAFC" stroke="#CBD5E1" />
+  <rect x="497" y="90" width="135" height="15" fill="#F1F5F9" />
+  <text x="564" y="101" fill="#1E293B" font-size="7.5" font-weight="bold" text-anchor="middle">Flight &amp; Seat (FastAPI / Java)</text>
+  <text x="564" y="115" fill="#475569" font-size="6.8" text-anchor="middle">Port 8002 | Redis Seat Lock TTL</text>
+  <rect x="501" y="122" width="127" height="26" rx="2" fill="#EFF6FF" stroke="#DBEAFE" />
+  <text x="564" y="132" fill="#1E40AF" font-size="6.5" font-weight="bold" text-anchor="middle">Envoy Proxy Sidecar (:15001)</text>
+  <text x="564" y="142" fill="#047857" font-size="6.2" text-anchor="middle">SPIFFE ID: spiffe://.../sa/catalog-sa</text>
+
+  <!-- Pod 3: Booking & Order Core -->
+  <rect x="353" y="160" width="135" height="64" rx="3" fill="#F8FAFC" stroke="#CBD5E1" />
+  <rect x="353" y="160" width="135" height="15" fill="#F1F5F9" />
+  <text x="420" y="171" fill="#1E293B" font-size="7.5" font-weight="bold" text-anchor="middle">Booking Core (Spring Boot)</text>
+  <text x="420" y="185" fill="#475569" font-size="6.8" text-anchor="middle">Port 8080/8003 | Saga Coordinator</text>
+  <rect x="357" y="192" width="127" height="26" rx="2" fill="#EFF6FF" stroke="#DBEAFE" />
+  <text x="420" y="202" fill="#1E40AF" font-size="6.5" font-weight="bold" text-anchor="middle">Envoy Proxy Sidecar (:15001)</text>
+  <text x="420" y="212" fill="#047857" font-size="6.2" text-anchor="middle">Circuit Breaker &amp; Outlier Eject</text>
+
+  <!-- Pod 4: AI & Notification -->
+  <rect x="497" y="160" width="135" height="64" rx="3" fill="#F8FAFC" stroke="#CBD5E1" />
+  <rect x="497" y="160" width="135" height="15" fill="#F1F5F9" />
+  <text x="564" y="171" fill="#1E293B" font-size="7.5" font-weight="bold" text-anchor="middle">AI &amp; Notify (FastAPI / Node)</text>
+  <text x="564" y="185" fill="#475569" font-size="6.8" text-anchor="middle">Port 8000/8004 | RAG &amp; WebSockets</text>
+  <rect x="501" y="192" width="127" height="26" rx="2" fill="#EFF6FF" stroke="#DBEAFE" />
+  <text x="564" y="202" fill="#1E40AF" font-size="6.5" font-weight="bold" text-anchor="middle">Envoy Proxy Sidecar (:15001)</text>
+  <text x="564" y="212" fill="#047857" font-size="6.2" text-anchor="middle">Canary Weight Split (90/10)</text>
+
+  <!-- Flow Arrow Mesh -> Data & Telemetry -->
+  <line x1="640" y1="100" x2="665" y2="100" stroke="#4B5563" stroke-width="1.2" marker-end="url(#arrow)" />
+  <line x1="640" y1="180" x2="665" y2="180" stroke="#4B5563" stroke-width="1.2" marker-end="url(#arrow)" />
+
+  <!-- Zone 4: Data Stores & Observability -->
+  <rect x="665" y="38" width="115" height="195" rx="5" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2" filter="url(#shadow)" />
+  <rect x="665" y="38" width="115" height="20" rx="5" fill="#475569" />
+  <text x="722" y="52" fill="#FFFFFF" font-size="8.5" font-weight="bold" text-anchor="middle">DATA &amp; CACHE</text>
+
+  <rect x="672" y="66" width="101" height="38" rx="3" fill="#EFF6FF" stroke="#BFDBFE" />
+  <text x="722" y="78" fill="#1E3A8A" font-size="7.5" font-weight="bold" text-anchor="middle">MySQL 8.0 Primary</text>
+  <text x="722" y="89" fill="#4B5563" font-size="6.5" text-anchor="middle">ACID Ledger, Bookings</text>
+  <text x="722" y="98" fill="#4B5563" font-size="6.2" text-anchor="middle">Database-per-Service</text>
+
+  <rect x="672" y="110" width="101" height="38" rx="3" fill="#FEF2F2" stroke="#FECACA" />
+  <text x="722" y="122" fill="#991B1B" font-size="7.5" font-weight="bold" text-anchor="middle">Redis 7 Cluster</text>
+  <text x="722" y="133" fill="#4B5563" font-size="6.5" text-anchor="middle">Seat Holds (5m TTL)</text>
+  <text x="722" y="142" fill="#047857" font-size="6.2" font-weight="bold" text-anchor="middle">Sub-3ms Latency</text>
+
+  <rect x="672" y="154" width="101" height="72" rx="3" fill="#F8FAFC" stroke="#CBD5E1" />
+  <text x="722" y="167" fill="#1E293B" font-size="7.5" font-weight="bold" text-anchor="middle">Observability Stack</text>
+  <text x="722" y="179" fill="#3B82F6" font-size="6.8" text-anchor="middle">• Prometheus v2.51 (15s)</text>
+  <text x="722" y="190" fill="#E11D48" font-size="6.8" text-anchor="middle">• Grafana v10.4 Panels</text>
+  <text x="722" y="201" fill="#7C3AED" font-size="6.8" text-anchor="middle">• Jaeger v1.55 Tracing</text>
+  <text x="722" y="212" fill="#047857" font-size="6.2" font-weight="bold" text-anchor="middle">100% Trace Propagation</text>
+
+  <!-- Zone 5: Verified Benchmark Card -->
+  <rect x="790" y="38" width="115" height="195" rx="5" fill="#FFFFFF" stroke="#FBBF24" stroke-width="1.2" filter="url(#shadow)" />
+  <rect x="790" y="38" width="115" height="20" rx="5" fill="#B45309" />
+  <text x="847" y="52" fill="#FFFFFF" font-size="8.5" font-weight="bold" text-anchor="middle">EMPIRICAL PROOF</text>
+
+  <rect x="796" y="66" width="103" height="28" rx="3" fill="#FEF3C7" />
+  <text x="847" y="77" fill="#92400E" font-size="6.8" text-anchor="middle">Sustained Peak Load</text>
+  <text x="847" y="89" fill="#B45309" font-size="9" font-weight="bold" text-anchor="middle">1,840 RPS</text>
+
+  <rect x="796" y="99" width="103" height="28" rx="3" fill="#EFF6FF" />
+  <text x="847" y="110" fill="#1E40AF" font-size="6.8" text-anchor="middle">p99 Service Mesh Tax</text>
+  <text x="847" y="122" fill="#1D4ED8" font-size="9" font-weight="bold" text-anchor="middle">3.82 ms</text>
+
+  <rect x="796" y="132" width="103" height="28" rx="3" fill="#ECFDF5" />
+  <text x="847" y="143" fill="#065F46" font-size="6.8" text-anchor="middle">Cluster Availability</text>
+  <text x="847" y="155" fill="#047857" font-size="9" font-weight="bold" text-anchor="middle">99.98%</text>
+
+  <rect x="796" y="165" width="103" height="28" rx="3" fill="#FDF2F8" />
+  <text x="847" y="176" fill="#9D174D" font-size="6.8" text-anchor="middle">Circuit Trip Time</text>
+  <text x="847" y="188" fill="#BE185D" font-size="9" font-weight="bold" text-anchor="middle">180 ms</text>
+
+  <rect x="796" y="198" width="103" height="28" rx="3" fill="#F1F5F9" />
+  <text x="847" y="209" fill="#334155" font-size="6.8" text-anchor="middle">Hardware Savings</text>
+  <text x="847" y="221" fill="#0F172A" font-size="9" font-weight="bold" text-anchor="middle">94.6% CapEx</text>
+
+  <!-- Bottom Metric Callout Bar -->
+  <rect x="15" y="240" width="890" height="48" rx="4" fill="#0F172A" />
+  <text x="35" y="258" fill="#38BDF8" font-size="8.5" font-weight="bold">KEY VERIFIED METRICS:</text>
+  <text x="175" y="258" fill="#E2E8F0" font-size="8">• Strict mTLS: <tspan fill="#4ADE80" font-weight="bold">100% Inter-Pod TLS 1.3</tspan></text>
+  <text x="365" y="258" fill="#E2E8F0" font-size="8">• Distroless Image: <tspan fill="#4ADE80" font-weight="bold">&lt;65MB (0 CVEs)</tspan></text>
+  <text x="535" y="258" fill="#E2E8F0" font-size="8">• Canary Routing Variance: <tspan fill="#4ADE80" font-weight="bold">±0.16%</tspan></text>
+  <text x="735" y="258" fill="#E2E8F0" font-size="8">• Distributed Loss: <tspan fill="#4ADE80" font-weight="bold">0 Transactions</tspan></text>
+  
+  <text x="35" y="276" fill="#94A3B8" font-size="7.5">Architecture Governance: Cluster A – Software Systems Engineering | Verified on Edge K3s + Cloud AWS EKS Hybrid Testbed</text>
+  <text x="770" y="276" fill="#FBBF24" font-size="7.5" font-weight="bold">Academic Year 2026–2027</text>
+</svg>

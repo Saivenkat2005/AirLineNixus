@@ -1,0 +1,47 @@
+  // ================= PAGE 4: PROJECT COMPLETION CERTIFICATE (DEDICATED PAGE) =================
+  pages.push(`
+  <section class="report-page" id="page-4" data-page="4">
+    
+    <div class="page-content" style="justify-content: space-between; padding-top: 15px; padding-bottom: 10px;">
+      <div>
+        <h1 class="chapter-title" style="text-align: center; border-bottom: 2px solid #8B0000; padding-bottom: 6px; font-size: 13pt; letter-spacing: 1px; margin-bottom: 20px;">PROJECT COMPLETION CERTIFICATE</h1>
+        <div class="callout-note" style="margin: 6px 0; font-size: 9.2pt; line-height: 1.6; margin: 15px 0; padding: 16px 20px;">
+          <b>Certificate:</b> This is to certify that the Final Project Report entitled <b>"Cloud-Native API Gateway and Service Mesh Architecture"</b> submitted by <b>Bandaru Sai Venkat Ram (2300031764)</b>, <b>Davuluri Bala Gopal (2300032878)</b>, <b>Akaramsetty Siva Sai (2300033233)</b>, and <b>Rohid Baig (2300039146)</b> in partial fulfilment of the requirements for the award of the degree of <b>Bachelor of Technology in Computer Science and Engineering</b> is a bona fide record of the capstone work carried out under our guidance and supervision. The report conforms strictly to the approved Project Mandate, Cluster A research diary protocols, O1&ndash;O5 objective-to-evidence traceability matrices, and all applicable institutional, professional, safety, and academic integrity standards.
+        </div>
+        <table style="width: 100%; border-collapse: collapse; font-size: 8.8pt; margin-top: 35px;">
+          <tr>
+            <td style="width: 50%; vertical-align: top; padding: 12px 14px 20px 14px;">
+              <b>Mr. BVN Prasad Paruchuri</b><br>
+              <span style="font-size: 7.5pt; color: #475569;">Faculty Guide &amp; Assistant Professor<br>Dept. of Computer Science &amp; Engineering</span><br>
+              <span style="font-size: 7.5pt;">Signature: __________________________</span><br>
+              <span style="font-size: 7.5pt;">Date: ____ / ____ / 2026</span>
+            </td>
+            <td style="width: 50%; vertical-align: top; padding: 12px 14px 20px 14px;">
+              <b>Mrs. P. Anusha</b><br>
+              <span style="font-size: 7.5pt; color: #475569;">Project Coordinator, CSE-3<br>Dept. of Computer Science &amp; Engineering</span><br>
+              <span style="font-size: 7.5pt;">Signature: __________________________</span><br>
+              <span style="font-size: 7.5pt;">Date: ____ / ____ / 2026</span>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 50%; vertical-align: top; padding: 12px 14px 20px 14px;">
+              <b>Dr. A. Senthil</b><br>
+              <span style="font-size: 7.5pt; color: #475569;">Professor &amp; Head of Department<br>Dept. of Computer Science &amp; Engineering</span><br>
+              <span style="font-size: 7.5pt;">Signature: __________________________</span><br>
+              <span style="font-size: 7.5pt;">Date: ____ / ____ / 2026</span>
+            </td>
+            <td style="width: 50%; vertical-align: top; padding: 12px 14px 20px 14px;">
+              <b>External Examiner</b><br>
+              <span style="font-size: 7.5pt; color: #475569;">KLEF Final Viva Voce Examination Panel<br>Cluster A &ndash; Software Systems Engineering</span><br>
+              <span style="font-size: 7.5pt;">Signature: __________________________</span><br>
+              <span style="font-size: 7.5pt;">Date: ____ / ____ / 2026</span>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    ${renderFooter(4)}
+  </section>
+  `);
+
+  // ================= 

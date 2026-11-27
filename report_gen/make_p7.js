@@ -1,0 +1,13 @@
+const fs = require('fs');
+const orig = fs.readFileSync('report_gen/prelim_pages.js', 'utf8');
+const p6 = orig.indexOf('PAGE 6:');
+const p7 = orig.indexOf('PAGE 7:');
+const line6 = orig.lastIndexOf('\n', p6);
+const line7 = orig.lastIndexOf('\n', p7);
+let p7Chunk = orig.substring(line6 + 1, line7);
+p7Chunk = p7Chunk.split('page-6').join('page-7');
+p7Chunk = p7Chunk.split('renderHeader(6)').join('renderHeader(7)');
+p7Chunk = p7Chunk.split('renderFooter(6)').join('renderFooter(7)');
+p7Chunk = p7Chunk.split('PAGE 6:').join('PAGE 7:');
+fs.writeFileSync('report_gen/p7_out.txt', p7Chunk, 'utf8');
+console.log('Wrote p7_out.txt successfully');

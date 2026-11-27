@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 200" width="100%" height="auto" style="max-height: 190px; font-family: 'Times New Roman', serif;">
+  <rect x="5" y="5" width="840" height="190" rx="6" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1.5"/>
+  <rect x="5" y="5" width="840" height="26" rx="6" fill="#1A365D"/>
+  <rect x="5" y="16" width="840" height="15" fill="#1A365D"/>
+  <text x="425" y="21" fill="#FFFFFF" font-size="11.5" font-weight="bold" text-anchor="middle">FIGURE 4.3: API GATEWAY INGRESS REQUEST VALIDATION &amp; OFFLOADING PIPELINE</text>
+
+  <!-- 5 Pipeline stages -->
+  <g transform="translate(15, 42)">
+    <!-- Stage 1 -->
+    <rect x="0" y="0" width="145" height="135" rx="5" fill="#EBF8FF" stroke="#3182CE"/>
+    <rect x="0" y="0" width="145" height="24" rx="5" fill="#3182CE"/>
+    <text x="72" y="16" fill="#FFFFFF" font-size="9" font-weight="bold" text-anchor="middle">1. TLS Termination</text>
+    <text x="72" y="44" fill="#1A365D" font-size="8.5" font-weight="bold" text-anchor="middle">HTTPS Port 443</text>
+    <text x="72" y="62" fill="#4A5568" font-size="8" text-anchor="middle">ECDHE-ECDSA</text>
+    <text x="72" y="76" fill="#4A5568" font-size="8" text-anchor="middle">AES128-GCM-SHA256</text>
+    <rect x="8" y="92" width="129" height="32" rx="3" fill="#FFFFFF" stroke="#BEE3F8"/>
+    <text x="72" y="106" fill="#2B6CB0" font-size="7.5" font-weight="bold" text-anchor="middle">SSL Offload (22% CPU)</text>
+    <text x="72" y="118" fill="#718096" font-size="7" text-anchor="middle">Terminated at edge</text>
+
+    <!-- Arrow 1 -> 2 -->
+    <path d="M 148 68 L 168 68" stroke="#3182CE" stroke-width="2"/>
+    <polygon points="168,64 176,68 168,72" fill="#3182CE"/>
+
+    <!-- Stage 2 -->
+    <g transform="translate(178, 0)">
+      <rect x="0" y="0" width="145" height="135" rx="5" fill="#FEFCBF" stroke="#D69E2E"/>
+      <rect x="0" y="0" width="145" height="24" rx="5" fill="#D69E2E"/>
+      <text x="72" y="16" fill="#FFFFFF" font-size="9" font-weight="bold" text-anchor="middle">2. Rate Limiting</text>
+      <text x="72" y="44" fill="#744210" font-size="8.5" font-weight="bold" text-anchor="middle">Token Bucket Filter</text>
+      <text x="72" y="62" fill="#4A5568" font-size="8" text-anchor="middle">100 req/min/IP</text>
+      <text x="72" y="76" fill="#4A5568" font-size="8" text-anchor="middle">Burst allowance: 20</text>
+      <rect x="8" y="92" width="129" height="32" rx="3" fill="#FFFFFF" stroke="#F6E05E"/>
+      <text x="72" y="106" fill="#975A16" font-size="7.5" font-weight="bold" text-anchor="middle">Threshold Breach</text>
+      <text x="72" y="118" fill="#C53030" font-size="7" text-anchor="middle">↳ HTTP 429 Too Many</text>
+    </g>
+
+    <!-- Arrow 2 -> 3 -->
+    <path d="M 326 68 L 346 68" stroke="#D69E2E" stroke-width="2"/>
+    <polygon points="346,64 354,68 346,72" fill="#D69E2E"/>
+
+    <!-- Stage 3 -->
+    <g transform="translate(356, 0)">
+      <rect x="0" y="0" width="145" height="135" rx="5" fill="#FFF5F5" stroke="#E53E3E"/>
+      <rect x="0" y="0" width="145" height="24" rx="5" fill="#E53E3E"/>
+      <text x="72" y="16" fill="#FFFFFF" font-size="9" font-weight="bold" text-anchor="middle">3. JWT Validation</text>
+      <text x="72" y="44" fill="#9B2C2C" font-size="8.5" font-weight="bold" text-anchor="middle">RS256 Public Key</text>
+      <text x="72" y="62" fill="#4A5568" font-size="8" text-anchor="middle">Verify exp, sub, role</text>
+      <text x="72" y="76" fill="#4A5568" font-size="8" text-anchor="middle">Sanitize Auth header</text>
+      <rect x="8" y="92" width="129" height="32" rx="3" fill="#FFFFFF" stroke="#FEB2B2"/>
+      <text x="72" y="106" fill="#9B2C2C" font-size="7.5" font-weight="bold" text-anchor="middle">Tampered / Expired</text>
+      <text x="72" y="118" fill="#C53030" font-size="7" text-anchor="middle">↳ HTTP 401 Unauthorized</text>
+    </g>
+
+    <!-- Arrow 3 -> 4 -->
+    <path d="M 504 68 L 524 68" stroke="#E53E3E" stroke-width="2"/>
+    <polygon points="524,64 532,68 524,72" fill="#E53E3E"/>
+
+    <!-- Stage 4 -->
+    <g transform="translate(534, 0)">
+      <rect x="0" y="0" width="135" height="135" rx="5" fill="#F0FFF4" stroke="#38A169"/>
+      <rect x="0" y="0" width="135" height="24" rx="5" fill="#38A169"/>
+      <text x="67" y="16" fill="#FFFFFF" font-size="9" font-weight="bold" text-anchor="middle">4. Path Routing</text>
+      <text x="67" y="44" fill="#22543D" font-size="8.5" font-weight="bold" text-anchor="middle">L7 URL Dispatch</text>
+      <text x="67" y="62" fill="#4A5568" font-size="8" text-anchor="middle">/auth ↳ 8001</text>
+      <text x="67" y="76" fill="#4A5568" font-size="8" text-anchor="middle">/catalog ↳ 8002</text>
+      <text x="67" y="90" fill="#4A5568" font-size="8" text-anchor="middle">/orders ↳ 8003</text>
+      <text x="67" y="104" fill="#4A5568" font-size="8" text-anchor="middle">/notify ↳ 8004</text>
+      <text x="67" y="122" fill="#276749" font-size="7.5" font-weight="bold" text-anchor="middle">Clean Ingress CRDs</text>
+    </g>
+
+    <!-- Arrow 4 -> 5 -->
+    <path d="M 672 68 L 690 68" stroke="#38A169" stroke-width="2"/>
+    <polygon points="690,64 698,68 690,72" fill="#38A169"/>
+
+    <!-- Stage 5 -->
+    <g transform="translate(700, 0)">
+      <rect x="0" y="0" width="120" height="135" rx="5" fill="#FAF5FF" stroke="#805AD5"/>
+      <rect x="0" y="0" width="120" height="24" rx="5" fill="#805AD5"/>
+      <text x="60" y="16" fill="#FFFFFF" font-size="9" font-weight="bold" text-anchor="middle">5. Trace Injection</text>
+      <text x="60" y="44" fill="#553C9A" font-size="8.5" font-weight="bold" text-anchor="middle">W3C Headers</text>
+      <text x="60" y="62" fill="#4A5568" font-size="8" text-anchor="middle">x-request-id</text>
+      <text x="60" y="76" fill="#4A5568" font-size="8" text-anchor="middle">traceparent</text>
+      <rect x="6" y="92" width="108" height="32" rx="3" fill="#FFFFFF" stroke="#D6BCFA"/>
+      <text x="60" y="106" fill="#553C9A" font-size="7.5" font-weight="bold" text-anchor="middle">Propagate to Mesh</text>
+      <text x="60" y="118" fill="#2B6CB0" font-size="7" text-anchor="middle">Envoy sidecar handoff</text>
+    </g>
+  </g>
+</svg>

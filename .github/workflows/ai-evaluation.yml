@@ -1,0 +1,47 @@
+name: 3. AI Quality, DeepEval & Ragas Evaluation Gates
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  schedule:
+    - cron: '0 2 * * *' # Nightly evaluation benchmark
+
+jobs:
+  ai-evaluation:
+    name: DeepEval & Ragas Groundedness Matrix
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Set up Node.js 18
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install Python AI Dependencies
+        run: |
+          cd ai-service
+          pip install --no-cache-dir -r requirements.txt pytest pytest-asyncio
+
+      - name: Run DeepEval & Ragas Retrieval Matrix
+        run: |
+          PYTHONPATH=ai-service pytest ai-evaluation/deepeval ai-evaluation/ragas -v
+
+      - name: Run Standalone Quality Evaluation Engine
+        run: |
+          node ai-evaluation/evaluator/evaluate_ai_quality.js
+
+      - name: Archive Evaluation Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: ai-evaluation-report
+          path: ai-evaluation/evaluator/ai-evaluation-report.json

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240">
+  <rect width="240" height="240" rx="20" fill="#FD6925"/>
+  <text x="20" y="44" font-family="'Segoe UI', Roboto, Arial, sans-serif" font-weight="900" font-size="34" fill="#FFFFFF">9</text>
+  <text x="56" y="32" font-family="'Segoe UI', Roboto, Arial, sans-serif" font-weight="800" font-size="14" fill="#FFFFFF">INDUSTRY, INNOVATION</text>
+  <text x="56" y="48" font-family="'Segoe UI', Roboto, Arial, sans-serif" font-weight="800" font-size="14" fill="#FFFFFF">&amp; INFRASTRUCTURE</text>
+  <g transform="translate(40, 75)" fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="80" cy="30" r="16" fill="#FFFFFF" stroke="none"/>
+    <circle cx="30" cy="100" r="14" fill="#FFFFFF" stroke="none"/>
+    <circle cx="130" cy="100" r="14" fill="#FFFFFF" stroke="none"/>
+    <line x1="80" y1="30" x2="30" y2="100" stroke="#FFFFFF"/>
+    <line x1="80" y1="30" x2="130" y2="100" stroke="#FFFFFF"/>
+    <line x1="30" y1="100" x2="130" y2="100" stroke="#FFFFFF"/>
+    <path d="M 55 15 A 30 30 0 0 1 105 15" stroke="#FFFFFF" stroke-width="4"/>
+    <path d="M 40 2 A 48 48 0 0 1 120 2" stroke="#FFFFFF" stroke-width="4"/>
+  </g>
+</svg>

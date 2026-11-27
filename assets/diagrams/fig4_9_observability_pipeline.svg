@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 250" width="100%" height="auto" style="max-height: 230px; font-family: 'Times New Roman', serif;">
+  <rect x="5" y="5" width="840" height="240" rx="6" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1.5"/>
+  <rect x="5" y="5" width="840" height="26" rx="6" fill="#1A365D"/>
+  <rect x="5" y="16" width="840" height="15" fill="#1A365D"/>
+  <text x="425" y="21" fill="#FFFFFF" font-size="11.5" font-weight="bold" text-anchor="middle">FIGURE 4.9: END-TO-END OBSERVABILITY PIPELINE (PROMETHEUS, GRAFANA, JAEGER)</text>
+
+  <!-- Sources -->
+  <g transform="translate(25, 42)">
+    <rect width="180" height="185" rx="5" fill="#EDF2F7" stroke="#CBD5E0"/>
+    <rect width="180" height="22" rx="5" fill="#4A5568"/>
+    <text x="90" y="16" fill="#FFFFFF" font-size="9" font-weight="bold" text-anchor="middle">TELEMETRY SOURCES</text>
+    
+    <rect x="10" y="32" width="160" height="42" rx="3" fill="#FFFFFF" stroke="#CBD5E0"/>
+    <text x="90" y="48" fill="#1A365D" font-size="8" font-weight="bold" text-anchor="middle">Kong Gateway Access Logs</text>
+    <text x="90" y="62" fill="#718096" font-size="7.5" text-anchor="middle">North-South HTTP &amp; Latency</text>
+
+    <rect x="10" y="82" width="160" height="42" rx="3" fill="#FFFFFF" stroke="#CBD5E0"/>
+    <text x="90" y="98" fill="#1A365D" font-size="8" font-weight="bold" text-anchor="middle">Envoy Proxy Stats (:15090)</text>
+    <text x="90" y="112" fill="#718096" font-size="7.5" text-anchor="middle">istio_requests_total, latency</text>
+
+    <rect x="10" y="132" width="160" height="42" rx="3" fill="#FFFFFF" stroke="#CBD5E0"/>
+    <text x="90" y="148" fill="#1A365D" font-size="8" font-weight="bold" text-anchor="middle">App Distributed Spans</text>
+    <text x="90" y="162" fill="#718096" font-size="7.5" text-anchor="middle">W3C Trace Context (traceparent)</text>
+  </g>
+
+  <!-- Arrow metrics -->
+  <path d="M 205 103 L 265 80" stroke="#DD6B20" stroke-width="2"/>
+  <polygon points="265,76 273,80 265,84" fill="#DD6B20"/>
+  <text x="235" y="82" fill="#DD6B20" font-size="7.5" font-weight="bold">Pull (15s)</text>
+
+  <!-- Arrow traces -->
+  <path d="M 205 153 L 265 170" stroke="#805AD5" stroke-width="2"/>
+  <polygon points="265,166 273,170 265,174" fill="#805AD5"/>
+  <text x="235" y="172" fill="#805AD5" font-size="7.5" font-weight="bold">Push (UDP)</text>
+
+  <!-- Middle: Ingestion Engines -->
+  <g transform="translate(275, 42)">
+    <!-- Prometheus Box -->
+    <rect x="0" y="0" width="250" height="88" rx="5" fill="#FFFAF0" stroke="#DD6B20"/>
+    <rect x="0" y="0" width="250" height="20" rx="5" fill="#DD6B20"/>
+    <text x="125" y="14" fill="#FFFFFF" font-size="8.5" font-weight="bold" text-anchor="middle">METRICS ENGINE: PROMETHEUS v2.51</text>
+    <text x="125" y="38" fill="#7B341E" font-size="8" text-anchor="middle">Scrapes ServiceMonitors across all pods</text>
+    <text x="125" y="52" fill="#4A5568" font-size="7.5" text-anchor="middle">Evaluates PromQL Alerting Rules (Error &gt;1%, p95 &gt;50ms)</text>
+    <text x="125" y="68" fill="#718096" font-size="7.5" text-anchor="middle">Time-Series DB with 15-day local retention</text>
+
+    <!-- Jaeger Box -->
+    <g transform="translate(0, 97)">
+      <rect x="0" y="0" width="250" height="88" rx="5" fill="#FAF5FF" stroke="#805AD5"/>
+      <rect x="0" y="0" width="250" height="20" rx="5" fill="#805AD5"/>
+      <text x="125" y="14" fill="#FFFFFF" font-size="8.5" font-weight="bold" text-anchor="middle">TRACING ENGINE: JAEGER v1.55</text>
+      <text x="125" y="38" fill="#553C9A" font-size="8" text-anchor="middle">Jaeger Agent &amp; Collector (Compact Thrift / gRPC)</text>
+      <text x="125" y="52" fill="#4A5568" font-size="7.5" text-anchor="middle">Reconstructs end-to-end DAG trace waterfall</text>
+      <text x="125" y="68" fill="#718096" font-size="7.5" text-anchor="middle">100% Trace capture without sampling degradation</text>
+    </g>
+  </g>
+
+  <!-- Arrow to visualization -->
+  <path d="M 525 80 L 585 100" stroke="#DD6B20" stroke-width="2"/>
+  <polygon points="585,96 593,100 585,104" fill="#DD6B20"/>
+
+  <path d="M 525 150 L 585 130" stroke="#805AD5" stroke-width="2"/>
+  <polygon points="585,126 593,130 585,134" fill="#805AD5"/>
+
+  <!-- Right: Visualization Dashboards -->
+  <g transform="translate(595, 42)">
+    <rect width="225" height="185" rx="5" fill="#F7FAFC" stroke="#3182CE"/>
+    <rect width="225" height="22" rx="5" fill="#3182CE"/>
+    <text x="112" y="16" fill="#FFFFFF" font-size="9" font-weight="bold" text-anchor="middle">VISUALIZATION &amp; AUDITING</text>
+    
+    <rect x="10" y="32" width="205" height="42" rx="3" fill="#FFFFFF" stroke="#BEE3F8"/>
+    <text x="112" y="48" fill="#1A365D" font-size="8" font-weight="bold" text-anchor="middle">Grafana Service Mesh Graph</text>
+    <text x="112" y="62" fill="#718096" font-size="7.5" text-anchor="middle">Topology, connection counts, RPS heatmap</text>
+
+    <rect x="10" y="82" width="205" height="42" rx="3" fill="#FFFFFF" stroke="#BEE3F8"/>
+    <text x="112" y="98" fill="#1A365D" font-size="8" font-weight="bold" text-anchor="middle">Latency Percentile Panels</text>
+    <text x="112" y="112" fill="#718096" font-size="7.5" text-anchor="middle">Real-time p50, p90, p99 histogram curves</text>
+
+    <rect x="10" y="132" width="205" height="42" rx="3" fill="#FFFFFF" stroke="#BEE3F8"/>
+    <text x="112" y="148" fill="#1A365D" font-size="8" font-weight="bold" text-anchor="middle">Jaeger Span Waterfall UI</text>
+    <text x="112" y="162" fill="#718096" font-size="7.5" text-anchor="middle">Millisecond latency allocation per hop</text>
+  </g>
+</svg>

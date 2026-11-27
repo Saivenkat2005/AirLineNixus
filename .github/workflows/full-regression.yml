@@ -1,0 +1,36 @@
+name: 5. Full End-to-End Regression & Docker Deployment
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  full-e2e-regression:
+    name: Full Pipeline Integration
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Build and Start Containers
+        run: |
+          docker compose build
+          docker compose up -d mysql redis core-service api-gateway ai-service frontend
+
+      - name: Wait for Cluster Readiness
+        run: |
+          timeout 120s bash -c 'until curl -sf http://localhost:4000/ready; do sleep 5; done'
+
+      - name: Run End-to-End Deployed Test Suite
+        run: |
+          node test_deployed_e2e.js
+
+      - name: Run AI Quality Evaluation Matrix
+        run: |
+          node ai-evaluation/evaluator/evaluate_ai_quality.js
+
+      - name: Run Postman / Newman Regression Suite
+        run: |
+          node automation/postman/run_newman.js

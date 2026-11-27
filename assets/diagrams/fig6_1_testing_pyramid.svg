@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 250" width="100%" height="auto" style="max-height: 230px; font-family: 'Times New Roman', serif;">
+  <rect x="5" y="5" width="840" height="240" rx="6" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="1.5"/>
+  <rect x="5" y="5" width="840" height="26" rx="6" fill="#1A365D"/>
+  <rect x="5" y="16" width="840" height="15" fill="#1A365D"/>
+  <text x="425" y="21" fill="#FFFFFF" font-size="11.5" font-weight="bold" text-anchor="middle">FIGURE 6.1: CLOUD-NATIVE TESTING PYRAMID &amp; VERIFICATION TRACEABILITY</text>
+
+  <!-- Left: Pyramid Visual -->
+  <g transform="translate(60, 42)">
+    <!-- Top Layer: Security & Penetration -->
+    <polygon points="175,10 70,60 280,60" fill="#FFF5F5" stroke="#E53E3E" stroke-width="1.5"/>
+    <text x="175" y="45" fill="#C53030" font-size="8.5" font-weight="bold" text-anchor="middle">Security &amp; Pentest (OWASP ZAP, Trivy)</text>
+
+    <!-- 2nd Layer: System & Chaos -->
+    <polygon points="70,64 280,64 320,110 30,110" fill="#FEFCBF" stroke="#D69E2E" stroke-width="1.5"/>
+    <text x="175" y="92" fill="#744210" font-size="8.5" font-weight="bold" text-anchor="middle">Chaos &amp; Load Tests (k6 up to 2,500 VUs, Chaos Mesh)</text>
+
+    <!-- 3rd Layer: API & Integration -->
+    <polygon points="30,114 320,114 360,155 -10,155" fill="#EBF8FF" stroke="#3182CE" stroke-width="1.5"/>
+    <text x="175" y="138" fill="#2B6CB0" font-size="8.5" font-weight="bold" text-anchor="middle">API &amp; Contract Integration (Newman, Postman 48 Endpoints)</text>
+
+    <!-- Base Layer: Unit Tests -->
+    <polygon points="-10,159 360,159 400,195 -50,195" fill="#F0FFF4" stroke="#38A169" stroke-width="1.5"/>
+    <text x="175" y="180" fill="#22543D" font-size="9" font-weight="bold" text-anchor="middle">Automated Unit Tests (Go, PyTest, JUnit Mockito &gt;85% Coverage)</text>
+  </g>
+
+  <!-- Right: Verification Metrics Table -->
+  <g transform="translate(480, 42)">
+    <rect width="330" height="185" rx="5" fill="#F7FAFC" stroke="#CBD5E0"/>
+    <rect width="330" height="22" rx="5" fill="#1A365D"/>
+    <text x="165" y="15" fill="#FFFFFF" font-size="8.5" font-weight="bold" text-anchor="middle">VERIFIED EMPIRICAL TEST OUTCOMES</text>
+
+    <g transform="translate(10, 32)">
+      <text x="0" y="12" fill="#1A365D" font-size="8" font-weight="bold">• Unit Test Coverage:</text>
+      <text x="310" y="12" fill="#276749" font-size="8" font-weight="bold" text-anchor="end">86.7% – 91.2% (PASS)</text>
+
+      <text x="0" y="32" fill="#1A365D" font-size="8" font-weight="bold">• API Contract Validation:</text>
+      <text x="310" y="32" fill="#276749" font-size="8" font-weight="bold" text-anchor="end">48/48 Endpoints (PASS)</text>
+
+      <text x="0" y="52" fill="#1A365D" font-size="8" font-weight="bold">• End-to-End Workflow Iterations:</text>
+      <text x="310" y="52" fill="#276749" font-size="8" font-weight="bold" text-anchor="end">500 Iterations (100% PASS)</text>
+
+      <text x="0" y="72" fill="#1A365D" font-size="8" font-weight="bold">• Canary Traffic Split Variance:</text>
+      <text x="310" y="72" fill="#276749" font-size="8" font-weight="bold" text-anchor="end">±0.16% Variance (PASS)</text>
+
+      <text x="0" y="92" fill="#1A365D" font-size="8" font-weight="bold">• Circuit Breaker Outlier Ejection:</text>
+      <text x="310" y="92" fill="#276749" font-size="8" font-weight="bold" text-anchor="end">180 ms Trip Time (PASS)</text>
+
+      <text x="0" y="112" fill="#1A365D" font-size="8" font-weight="bold">• Sustained Peak Load Throughput:</text>
+      <text x="310" y="112" fill="#276749" font-size="8" font-weight="bold" text-anchor="end">1,840 RPS (PASS)</text>
+
+      <text x="0" y="132" fill="#1A365D" font-size="8" font-weight="bold">• Service Mesh Latency Overhead:</text>
+      <text x="310" y="132" fill="#276749" font-size="8" font-weight="bold" text-anchor="end">+3.82 ms at p99 (PASS)</text>
+
+      <text x="0" y="150" fill="#1A365D" font-size="8" font-weight="bold">• Container Image Security Scan:</text>
+      <text x="310" y="150" fill="#276749" font-size="8" font-weight="bold" text-anchor="end">0 Critical / 0 High CVEs (PASS)</text>
+    </g>
+  </g>
+</svg>

@@ -1,6 +1,5 @@
 package com.airlines.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.airlines.dto.SeatTypeDTO;
@@ -15,8 +14,11 @@ import java.util.List;
 @RequestMapping("/seat")
 @CrossOrigin("*")
 public class SeatTypeController {
-    @Autowired
-    private SeatTypeService seatTypeService;
+    private final SeatTypeService seatTypeService;
+
+    public SeatTypeController(SeatTypeService seatTypeService) {
+        this.seatTypeService = seatTypeService;
+    }
 
     @PostMapping("/add")
     public SeatDetails insertSeat(@Valid @RequestBody SeatDetails seatDetails) {
@@ -28,7 +30,7 @@ public class SeatTypeController {
         return seatTypeService.getSeatDetailsById(seatId);
     }
 
-    @GetMapping("/get")
+    @GetMapping({"/get", "/all"})
     public List<SeatDetails> getAllSeatDetails() {
         return seatTypeService.getAllSeatDetails();
     }
@@ -49,4 +51,32 @@ public class SeatTypeController {
         return seatTypeService.getSeatsByFlightId(flightId);
     }
 
+    @PostMapping("/hold/{seatId}")
+    public String holdSeat(@PathVariable("seatId") Long seatId, @RequestParam("userId") String userId) {
+        boolean success = seatTypeService.holdSeat(seatId, userId);
+        if (success) {
+            return "Seat held successfully for 5 minutes.";
+        }
+        return "Seat is already held or unavailable.";
+    }
+
+    @GetMapping("/status/{flightId}/{seatType}")
+    public List<com.airlines.dto.SeatStatusDTO> getSeatMapStatus(
+            @PathVariable("flightId") Long flightId, 
+            @PathVariable("seatType") String seatType) {
+        return seatTypeService.getSeatMapStatus(flightId, seatType);
+    }
+
+    @PostMapping("/hold/specific/{flightId}/{seatType}/{seatNumber}")
+    public String holdSpecificSeat(
+            @PathVariable("flightId") Long flightId,
+            @PathVariable("seatType") String seatType,
+            @PathVariable("seatNumber") String seatNumber,
+            @RequestParam("userId") String userId) {
+        boolean success = seatTypeService.holdSpecificSeat(flightId, seatType, seatNumber, userId);
+        if (success) {
+            return "Seat " + seatNumber + " held successfully for 5 minutes.";
+        }
+        return "Seat is already held or unavailable.";
+    }
 }

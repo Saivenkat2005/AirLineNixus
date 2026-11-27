@@ -1,0 +1,125 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: nexus-gateway
+  namespace: default
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "nexus.airlines.com"
+    - "*"
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: nexus-routes
+  namespace: default
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - nexus-gateway
+  http:
+  # Route AI Assistant queries to AI FastAPI Service
+  - match:
+    - uri:
+        prefix: /api/ai
+    route:
+    - destination:
+        host: ai-service
+        port:
+          number: 8000
+    timeout: 10s
+    retries:
+      attempts: 2
+      perTryTimeout: 3s
+      retryOn: "5xx,connect-failure,refused-stream"
+
+  # Route Media Service queries
+  - match:
+    - uri:
+        prefix: /api/v1/media
+    route:
+    - destination:
+        host: core-service
+        port:
+          number: 8080
+
+  # Canary Routing for Core Booking Service (90% Stable v1, 10% Canary v2)
+  - match:
+    - uri:
+        prefix: /api/v1/booking
+    route:
+    - destination:
+        host: core-service
+        subset: v1
+        port:
+          number: 8080
+      weight: 90
+    - destination:
+        host: core-service
+        subset: v2
+        port:
+          number: 8080
+      weight: 10
+    timeout: 5s
+    fault:
+      delay:
+        percentage:
+          value: 0.1
+        fixedDelay: 500ms
+
+  # Default API Gateway routing to Core Service
+  - match:
+    - uri:
+        prefix: /
+    route:
+    - destination:
+        host: api-gateway
+        port:
+          number: 4000
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: core-service-destination
+  namespace: default
+spec:
+  host: core-service
+  trafficPolicy:
+    tls:
+      mode: ISTIO_MUTUAL # Strict mTLS mesh encryption
+    connectionPool:
+      tcp:
+        maxConnections: 250
+      http:
+        http1MaxPendingRequests: 100
+        maxRequestsPerConnection: 10
+    circuitBreaker:
+      simpleCb:
+        maxConnections: 100
+        consecutive5xxErrors: 3
+        interval: 10s
+        baseEjectionTime: 30s
+  subsets:
+  - name: v1
+    labels:
+      version: v1
+  - name: v2
+    labels:
+      version: v2
+---
+apiVersion: security.istio.io/v1beta1
+kind: PeerAuthentication
+metadata:
+  name: default
+  namespace: default
+spec:
+  mtls:
+    mode: STRICT

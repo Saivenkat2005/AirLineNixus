@@ -1,0 +1,61 @@
+PAGE 9: LIST OF FIGURES & LIST OF TABLES =================
+  pages.push(`
+  <section class="report-page" id="page-9" data-page="8">
+    ${renderHeader(9)}
+    <div class="page-content" style="justify-content: space-between;">
+      <div>
+        <h1 class="chapter-title" style="text-align: center; border-bottom: 2px solid #8B0000; padding-bottom: 3px; font-size: 11pt;">LIST OF FIGURES</h1>
+        <table class="data-table" style="font-size: 7.8pt;">
+          <thead>
+            <tr><th style="width: 14%;">Figure ID</th><th style="width: 78%;">Descriptive Figure Title</th><th style="width: 8%; text-align: right;">Page</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><b>Figure 0.1</b></td><td>Project at a Glance &ndash; Integrated Architectural Mechanism, Data Flows, and Empirical Evidence</td><td style="text-align: right; font-weight: bold;">7</td></tr>
+            <tr><td><b>Figure 4.1</b></td><td>Comprehensive C4 Container-Level System Architecture and Zero-Trust Mesh Topology</td><td style="text-align: right; font-weight: bold;">18</td></tr>
+            <tr><td><b>Figure 4.2</b></td><td>Saga Distributed Transaction Workflow, Inventory Decrement, and Compensating Rollback Flow</td><td style="text-align: right; font-weight: bold;">22</td></tr>
+            <tr><td><b>Figure 4.3</b></td><td>API Gateway Ingress Request Validation, Offloading, and Rate Limiting Pipeline</td><td style="text-align: right; font-weight: bold;">19</td></tr>
+            <tr><td><b>Figure 4.4</b></td><td>Service Mesh Control Plane (istiod) and Data Plane (Envoy Sidecar) Interaction Model</td><td style="text-align: right; font-weight: bold;">19</td></tr>
+            <tr><td><b>Figure 4.5</b></td><td>End-to-End Flight Checkout Distributed Request Sequence and gRPC Invocation Flow</td><td style="text-align: right; font-weight: bold;">20</td></tr>
+            <tr><td><b>Figure 4.6</b></td><td>Multi-Node Kubernetes Deployment, Pod Anti-Affinity, and High-Availability Topology</td><td style="text-align: right; font-weight: bold;">20</td></tr>
+            <tr><td><b>Figure 4.7</b></td><td>Linux Network Namespace (netns) and iptables PREROUTING/OUTPUT Packet Redirection Mechanism</td><td style="text-align: right; font-weight: bold;">21</td></tr>
+            <tr><td><b>Figure 4.8</b></td><td>Zero-Trust SPIFFE Identity Issuance, SVID Rotation, and Mutual TLS Handshake Flow</td><td style="text-align: right; font-weight: bold;">21</td></tr>
+            <tr><td><b>Figure 4.9</b></td><td>End-to-End Observability Pipeline (Prometheus Scraping, Grafana Dashboards, Jaeger Waterfall Tracing)</td><td style="text-align: right; font-weight: bold;">22</td></tr>
+            <tr><td><b>Figure 4.10</b></td><td>Envoy Circuit Breaker Outlier Detection State Machine (Closed, Open, Half-Open Probing)</td><td style="text-align: right; font-weight: bold;">23</td></tr>
+            <tr><td><b>Figure 5.1</b></td><td>Automated CI/CD GitOps Pipeline via GitHub Actions, Multi-Stage Docker, and ArgoCD</td><td style="text-align: right; font-weight: bold;">27</td></tr>
+            <tr><td><b>Figure 6.1</b></td><td>Cloud-Native Testing Pyramid, Verification Traceability, and Empirical Outcome Summary</td><td style="text-align: right; font-weight: bold;">29</td></tr>
+            <tr><td><b>Figure 9.1</b></td><td>Two-Semester Capstone Stage-Gate Review Progression (G0, R1, PDR, CDR, Final Defence)</td><td style="text-align: right; font-weight: bold;">35</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="border-top: 1px solid #cbd5e1; padding-top: 4px;">
+        <h1 class="chapter-title" style="text-align: center; border-bottom: 2px solid #8B0000; padding-bottom: 3px; font-size: 11pt;">LIST OF TABLES</h1>
+        <table class="data-table" style="font-size: 7.8pt;">
+          <thead>
+            <tr><th style="width: 14%;">Table ID</th><th style="width: 78%;">Descriptive Table Title</th><th style="width: 8%; text-align: right;">Page</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><b>Table 1.1</b></td><td>Complete Edge Testbed Hardware Components, Specifications, and Cost Breakdown</td><td style="text-align: right; font-weight: bold;">12</td></tr>
+            <tr><td><b>Table 1.2</b></td><td>Removed High-Cost Enterprise Hardware Justification and 94.6% CapEx Reduction</td><td style="text-align: right; font-weight: bold;">12</td></tr>
+            <tr><td><b>Table 1.3</b></td><td>Team Composition, Role Distribution, Owned Objectives, and Verifiable Artifacts</td><td style="text-align: right; font-weight: bold;">9</td></tr>
+            <tr><td><b>Table 2.1</b></td><td>Comparative Evaluation Matrix of Industry Ingress Gateways and Service Meshes</td><td style="text-align: right; font-weight: bold;">14</td></tr>
+            <tr><td><b>Table 3.1</b></td><td>Software Requirements and Release Acceptance Matrix (12 Mandatory Quality Gates)</td><td style="text-align: right; font-weight: bold;">17</td></tr>
+            <tr><td><b>Table 4.1</b></td><td>Architecture Decision Records (ADR-01 to ADR-06) Ratified at Preliminary Design Review</td><td style="text-align: right; font-weight: bold;">23</td></tr>
+            <tr><td><b>Table 4.2</b></td><td>Comprehensive Architecture-to-Requirements Traceability Matrix</td><td style="text-align: right; font-weight: bold;">24</td></tr>
+            <tr><td><b>Table 6.1</b></td><td>k6 Load Test Performance Benchmark Results across Virtual User Scales (100&ndash;2,500 VUs)</td><td style="text-align: right; font-weight: bold;">30</td></tr>
+            <tr><td><b>Table 6.2</b></td><td>Formal Test Suite Execution and Verification Traceability Results (TC-01 to TC-10)</td><td style="text-align: right; font-weight: bold;">31</td></tr>
+            <tr><td><b>Table 6.3</b></td><td>STRIDE Threat Model, Mitigating Cloud-Native Controls, and Verification Tests</td><td style="text-align: right; font-weight: bold;">31</td></tr>
+            <tr><td><b>Table 7.1</b></td><td>Comparative Latency and Resource Footprint Benchmarks across Architectural Baselines</td><td style="text-align: right; font-weight: bold;">32</td></tr>
+            <tr><td><b>Table 7.2</b></td><td>Baseline Unmanaged Microservices vs Final Cloud-Native Architecture Feature Comparison</td><td style="text-align: right; font-weight: bold;">33</td></tr>
+            <tr><td><b>Table 8.1</b></td><td>Planned vs Achieved Technical Outcomes Mapping for Objectives O1 through O5</td><td style="text-align: right; font-weight: bold;">34</td></tr>
+            <tr><td><b>Table 9.1</b></td><td>Stage-Gate Milestone Progression, Panel Conditions, and Closure Actions</td><td style="text-align: right; font-weight: bold;">35</td></tr>
+            <tr><td><b>Table 9.2</b></td><td>Individual Team Member Contribution Statement and Verifiable Evidence Matrix</td><td style="text-align: right; font-weight: bold;">35</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    ${renderFooter(9)}
+  </section>
+  `);
+
+  // ================= 

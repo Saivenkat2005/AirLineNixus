@@ -1,0 +1,16 @@
+apiVersion: v2
+name: airline-nexus
+description: Ultra Production-Level Cloud-Native Airline Booking Platform Helm Chart
+type: application
+version: 2.0.0
+appVersion: "2.0.0"
+maintainers:
+  - name: Nexus Cloud Platform Team
+    email: ops@airlines.com
+keywords:
+  - airline
+  - microservices
+  - istio
+  - redis
+  - kafka
+  - fast-api

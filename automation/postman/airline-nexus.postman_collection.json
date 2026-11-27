@@ -1,0 +1,119 @@
+{
+  "info": {
+    "name": "Airline Nexus - E2E API Regression Collection",
+    "_postman_id": "nexus-api-regression-2026",
+    "description": "Comprehensive regression tests covering Gateway, Core Flights, Seats, Bookings, Tickets, and AI Microservice",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "API Gateway Health",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/health",
+          "host": ["{{baseUrl}}"],
+          "path": ["health"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+              "pm.test('Service status is UP', function () { const json = pm.response.json(); pm.expect(json.status).to.eql('UP'); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Core Service - Flight Inventory",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/flights/all",
+          "host": ["{{baseUrl}}"],
+          "path": ["flights", "all"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+              "pm.test('Flights array returned', function () { const json = pm.response.json(); pm.expect(Array.isArray(json)).to.be.true; });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "AI Service - Travel Copilot Search",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"message\": \"Find flights from Hyderabad to Delhi under 8000\"}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/ai/agents/travel-copilot",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "ai", "agents", "travel-copilot"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+              "pm.test('Reply is grounded in verified schedules', function () { const json = pm.response.json(); pm.expect(json.reply).to.include('verified'); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "AI Quality - Evaluation Telemetry",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/ai/evaluation/report",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "ai", "evaluation", "report"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+              "pm.test('DeepEval pass rate >= 95%', function () { const json = pm.response.json(); pm.expect(json.pass_rate_pct).to.be.at.least(95); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:4000",
+      "type": "string"
+    }
+  ]
+}

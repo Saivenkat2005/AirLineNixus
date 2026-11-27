@@ -1,0 +1,85 @@
+  // ================= PAGE 8: TABLE OF CONTENTS =================
+  pages.push(`
+  <section class="report-page" id="page-8" data-page="7">
+    ${renderHeader(8)}
+    <div class="page-content" style="justify-content: space-between;">
+      <div>
+        <h1 class="chapter-title" style="text-align: center; border-bottom: 2px solid #8B0000; padding-bottom: 3px; font-size: 11pt;">TABLE OF CONTENTS</h1>
+        
+        <style>
+          .toc-table { width: 100%; border-collapse: collapse; font-size: 8pt; line-height: 1.32; }
+          .toc-table td { padding: 1.5px 2px; }
+          .toc-ch { font-weight: bold; color: #1A365D; }
+          .toc-sec { padding-left: 12px !important; color: #334155; }
+          .toc-sub { padding-left: 24px !important; color: #475569; }
+          .toc-page { text-align: right; font-weight: bold; width: 35px; }
+          .toc-leader { border-bottom: 1px dotted #cbd5e1; width: 100%; display: inline-block; height: 1px; margin: 0 4px; }
+        </style>
+
+        <table class="toc-table">
+          <tr><td class="toc-ch">Title Page</td><td class="toc-page">2</td></tr>
+          <tr><td class="toc-ch">Student Declaration &amp; Project Completion Certificate</td><td class="toc-page">3</td></tr>
+          <tr><td class="toc-ch">Approval and Evaluation Sheet</td><td class="toc-page">4</td></tr>
+          <tr><td class="toc-ch">Acknowledgements &amp; Responsible AI Tool Disclosure</td><td class="toc-page">5</td></tr>
+          <tr><td class="toc-ch">Structured Abstract &amp; Project at a Glance (Figure 0.1)</td><td class="toc-page">6</td></tr>
+          <tr><td class="toc-ch">Table of Contents</td><td class="toc-page">7</td></tr>
+          <tr><td class="toc-ch">List of Figures &amp; List of Tables</td><td class="toc-page">8</td></tr>
+          <tr><td class="toc-ch">List of Abbreviations and Acronyms &amp; Team Role Distribution</td><td class="toc-page">9</td></tr>
+          
+          <tr><td class="toc-ch" style="padding-top: 3px;">CHAPTER 1: PROJECT CONTEXT, PROBLEM DEFINITION AND OBJECTIVES</td><td class="toc-page" style="padding-top: 3px;">10</td></tr>
+          <tr><td class="toc-sec">1.1 Project Identity &bull; 1.2 Problem Source &bull; 1.3 Stakeholders &bull; 1.4 Mandate &amp; Goal</td><td class="toc-page">10</td></tr>
+          <tr><td class="toc-sec">1.5 In-Scope, Out-of-Scope, Constraints &bull; 1.6 O1&ndash;O5 Objectives Matrix</td><td class="toc-page">11</td></tr>
+          <tr><td class="toc-sec">1.7 Real-World Impact &bull; 1.8 SDG 9/12 &bull; 1.9 Hardware Breakdown &bull; 1.10 Report Org</td><td class="toc-page">12</td></tr>
+
+          <tr><td class="toc-ch" style="padding-top: 3px;">CHAPTER 2: LITERATURE REVIEW, EXISTING SOLUTIONS AND IDENTIFIED GAP</td><td class="toc-page" style="padding-top: 3px;">13</td></tr>
+          <tr><td class="toc-sec">2.1 Review Protocol &bull; 2.2 Scientific Literature &bull; 2.3 Industry Solutions</td><td class="toc-page">13</td></tr>
+          <tr><td class="toc-sec">2.4 Comparative Matrix &bull; 2.5 Limitations &bull; 2.6 Gap Statement &bull; 2.7 Positioning &bull; 2.8 Consequences</td><td class="toc-page">14</td></tr>
+
+          <tr><td class="toc-ch" style="padding-top: 3px;">CHAPTER 3: REQUIREMENTS SPECIFICATION AND ACCEPTANCE CRITERIA</td><td class="toc-page" style="padding-top: 3px;">15</td></tr>
+          <tr><td class="toc-sec">3.1 Users &amp; Environment &bull; 3.2 Functional Requirements (REQ-F-01 to REQ-F-06)</td><td class="toc-page">15</td></tr>
+          <tr><td class="toc-sec">3.2 REQ-F-07 to REQ-F-12 &bull; 3.3 ISO/IEC 25010 Quality Targets</td><td class="toc-page">16</td></tr>
+          <tr><td class="toc-sec">3.4 Data &amp; DPDP &bull; 3.5 Interfaces &bull; 3.6 Security &bull; 3.7 AI Scope &bull; 3.8 Deployment &bull; 3.9 Acceptance Matrix</td><td class="toc-page">17</td></tr>
+
+          <tr><td class="toc-ch" style="padding-top: 3px;">CHAPTER 4: SYSTEM ARCHITECTURE, DATA DESIGN AND ENGINEERING DECISIONS</td><td class="toc-page" style="padding-top: 3px;">18</td></tr>
+          <tr><td class="toc-sec">4.1 Architecture Principles &bull; 4.2 C4 Container-Level Architecture (Figure 4.1)</td><td class="toc-page">18</td></tr>
+          <tr><td class="toc-sec">4.3 API Gateway Ingress (Figure 4.3) &bull; 4.4 Bounded Contexts &bull; 4.5 Service Mesh Topology (Figure 4.4)</td><td class="toc-page">19</td></tr>
+          <tr><td class="toc-sec">4.6 Protocols &bull; Figure 4.5 Checkout Sequence &bull; 4.7 Deployment Architecture (Figure 4.6)</td><td class="toc-page">20</td></tr>
+          <tr><td class="toc-sec">4.8 Linux netns Redirection (Figure 4.7) &bull; 4.9 Zero-Trust SPIFFE mTLS (Figure 4.8)</td><td class="toc-page">21</td></tr>
+          <tr><td class="toc-sec">4.10 Saga Distributed Transactions (Figure 4.2) &bull; 4.11 Observability Pipeline (Figure 4.9)</td><td class="toc-page">22</td></tr>
+          <tr><td class="toc-sec">4.12 Circuit Breaker Outlier Detection (Figure 4.10) &bull; 4.13 Architecture Decisions (ADR-01 to 06)</td><td class="toc-page">23</td></tr>
+          <tr><td class="toc-sec">4.14 Architecture-to-Requirements Traceability Matrix (Table 4.2)</td><td class="toc-page">24</td></tr>
+
+          <tr><td class="toc-ch" style="padding-top: 3px;">CHAPTER 5: SYSTEM IMPLEMENTATION, INTEGRATION AND DEPLOYMENT</td><td class="toc-page" style="padding-top: 3px;">25</td></tr>
+          <tr><td class="toc-sec">5.1 Tooling Versions &bull; 5.2 Repository Layout &bull; 5.3 Ingress Gateway Manifest</td><td class="toc-page">25</td></tr>
+          <tr><td class="toc-sec">5.4 Polyglot Microservices Code (Auth Go &amp; FastAPI Python) &bull; 5.5 Istio Mesh Manifests</td><td class="toc-page">26</td></tr>
+          <tr><td class="toc-sec">5.6 Container Multi-Stage Dockerfile &bull; 5.7 HPA Autoscaling &bull; 5.8 GitOps CI/CD (Figure 5.1)</td><td class="toc-page">27</td></tr>
+          <tr><td class="toc-sec">5.8 Actions YAML &bull; 5.9 Telemetry &bull; 5.10 Secrets &bull; 5.11 Integration &bull; 5.12 Runbook &bull; 5.13 Circuit YAML &bull; 5.14 Challenges</td><td class="toc-page">28</td></tr>
+
+          <tr><td class="toc-ch" style="padding-top: 3px;">CHAPTER 6: VERIFICATION, VALIDATION, SECURITY AND OPERATIONAL RELIABILITY</td><td class="toc-page" style="padding-top: 3px;">29</td></tr>
+          <tr><td class="toc-sec">6.1 Testing Pyramid (Figure 6.1) &bull; 6.2 Unit Tests &bull; 6.3 API Tests &bull; 6.4 E2E Journeys &bull; 6.5 Canary</td><td class="toc-page">29</td></tr>
+          <tr><td class="toc-sec">6.6 Security Scans &bull; 6.7 k6 Load Benchmarks (Table 6.1) &bull; 6.8 Chaos Fault Injection</td><td class="toc-page">30</td></tr>
+          <tr><td class="toc-sec">6.9 Observability &bull; 6.10 Test Results (Table 6.2) &bull; 6.11 Defects BUG-01..03 &bull; 6.12 STRIDE Matrix (Table 6.3)</td><td class="toc-page">31</td></tr>
+
+          <tr><td class="toc-ch" style="padding-top: 3px;">CHAPTER 7: RESULTS, PERFORMANCE EVALUATION AND DISCUSSION</td><td class="toc-page" style="padding-top: 3px;">32</td></tr>
+          <tr><td class="toc-sec">7.1 Release Context &bull; 7.2 Functional O1&ndash;O5 &bull; 7.3 Latency &amp; Mesh Tax (Table 7.1) &bull; 7.4 Reliability</td><td class="toc-page">32</td></tr>
+          <tr><td class="toc-sec">7.5 Zero-Trust &bull; 7.6 Usability &bull; 7.7 Baseline Comparison (Table 7.2) &bull; 7.8 Failures &bull; 7.9 Limits &bull; 7.10 Discussion</td><td class="toc-page">33</td></tr>
+
+          <tr><td class="toc-ch" style="padding-top: 3px;">CHAPTER 8: OUTCOMES, IMPACT, SUSTAINABILITY AND FEASIBILITY</td><td class="toc-page" style="padding-top: 3px;">34</td></tr>
+          <tr><td class="toc-sec">8.1 Outcomes &bull; 8.2 Stakeholders &bull; 8.3 Impact &bull; 8.4 SDG 9/12 &bull; 8.5 Ethics &bull; 8.6 TCO &bull; 8.7 Sustainability &bull; 8.8 Roadmap</td><td class="toc-page">34</td></tr>
+
+          <tr><td class="toc-ch" style="padding-top: 3px;">CHAPTER 9: PROJECT EXECUTION, REVIEW-GATE CLOSURE AND TEAM CONTRIBUTIONS</td><td class="toc-page" style="padding-top: 3px;">35</td></tr>
+          <tr><td class="toc-sec">9.1 Stage Gates (Figure 9.1) &bull; 9.2 Closures &bull; 9.3 Changes &bull; 9.4 Release &bull; 9.5 Contributions &bull; 9.6 Ethics &bull; 9.7 Dissemination</td><td class="toc-page">35</td></tr>
+
+          <tr><td class="toc-ch" style="padding-top: 3px;">CHAPTER 10: CONCLUSIONS, CONTRIBUTIONS, LIMITATIONS AND FUTURE WORK</td><td class="toc-page" style="padding-top: 3px;">36</td></tr>
+          <tr><td class="toc-sec">10.1 Mandate &bull; 10.2 Objectives &bull; 10.3 Contributions &bull; 10.4 Limitations &bull; 10.5 Recommendations &bull; 10.6 Future Work</td><td class="toc-page">36</td></tr>
+
+          <tr><td class="toc-ch" style="padding-top: 3px;">REFERENCES (IEEE FORMAT &ndash; 38 PEER-REVIEWED CITATIONS)</td><td class="toc-page" style="padding-top: 3px;">37</td></tr>
+          <tr><td class="toc-ch">APPENDICES (PART I: TRACEABILITY, TEST ACCEPTANCE, STANDARDS &ndash; APP A TO C)</td><td class="toc-page">38</td></tr>
+          <tr><td class="toc-ch">APPENDICES (PART II: EVIDENCE REGISTER, API CATALOG, RUNBOOK, RISKS &ndash; APP D TO L)</td><td class="toc-page">39</td></tr>
+          <tr><td class="toc-ch">PART VII: FINAL SUBMISSION AND VIVA VOCE READINESS CHECKLIST</td><td class="toc-page">40</td></tr>
+        </table>
+      </div>
+    </div>
+    ${renderFooter(8)}
+  </section>
+  `);

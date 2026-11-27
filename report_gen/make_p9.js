@@ -1,0 +1,11 @@
+const fs = require('fs');
+const p8 = fs.readFileSync('report_gen/p8_orig.txt', 'utf8');
+const p9 = fs.readFileSync('report_gen/p9_orig.txt', 'utf8');
+let merged = p8;
+merged = merged.split('page-8').join('page-9');
+merged = merged.split('renderHeader(8)').join('renderHeader(9)');
+merged = merged.split('renderFooter(8)').join('renderFooter(9)');
+merged = merged.split('PAGE 8:').join('PAGE 9:');
+merged = merged.split('Figure 0.1</b></td><td>Project at a Glance &ndash; Integrated Architectural Mechanism, Data Flows, and Empirical Evidence</td><td style="text-align: right; font-weight: bold;">6').join('Figure 0.1</b></td><td>Project at a Glance &ndash; Integrated Architectural Mechanism, Data Flows, and Empirical Evidence</td><td style="text-align: right; font-weight: bold;">7');
+fs.writeFileSync('report_gen/p9_out.txt', merged, 'utf8');
+console.log('Wrote p9_out.txt successfully');

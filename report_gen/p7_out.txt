@@ -1,0 +1,44 @@
+  // ================= PAGE 7: STRUCTURED ABSTRACT & PROJECT AT A GLANCE =================
+  pages.push(`
+  <section class="report-page" id="page-7" data-page="6">
+    ${renderHeader(7)}
+    <div class="page-content" style="justify-content: space-between;">
+      <div>
+        <h1 class="chapter-title" style="text-align: center; border-bottom: 2px solid #8B0000; padding-bottom: 3px; font-size: 11pt;">STRUCTURED ABSTRACT</h1>
+        <div style="font-size: 8pt; line-height: 1.3; text-align: justify;">
+          <p style="margin-bottom: 3px;">
+            <b>Problem and Stakeholder Need:</b> Enterprise microservices architectures exhibit critical security and operational vulnerabilities due to unencrypted internal East-West traffic, lateral attack vectors, fragmented observability, and cascading failures caused by hardcoding networking concerns directly inside application domain code.
+          </p>
+          <p style="margin-bottom: 3px;">
+            <b>Approved Mandate and Integrated Delivery:</b> In strict fulfillment of the capstone mandate for Project 7 within Cluster A (Software Systems Engineering), the team designed, implemented, deployed, and empirically verified an integrated cloud-native API Gateway and Istio Service Mesh architecture that transparently decouples ingress routing, zero-trust security, dynamic traffic management, and distributed telemetry from four production microservices in an enterprise air travel platform (Persistent Airways).
+          </p>
+          <p style="margin-bottom: 3px;">
+            <b>Software Systems Engineering Method &amp; Design:</b> The system employs a dual-tier proxy topology comprising a declarative Kong Ingress Gateway for North-South edge management (TLS termination, token-bucket rate limiting, JWT validation) and an Istio Service Mesh (Envoy sidecars) for East-West communication. Zero-trust security is established via SPIFFE/Citadel automated X.509 mutual TLS (mTLS). Distributed transactions are orchestrated using the asynchronous Saga pattern across MySQL, PostgreSQL, and Redis datastores.
+          </p>
+          <p style="margin-bottom: 3px;">
+            <b>Quantitative Results against Baseline &amp; Thresholds:</b> Empirical benchmarks executed via k6 over a dedicated Gigabit testbed demonstrated a sustained peak throughput of <b>1,840 requests per second (RPS)</b>, exceeding the 1,500 RPS threshold. The service mesh introduced an average p99 latency overhead of only <b>3.82 ms</b> at 1,000 RPS, successfully satisfying the &lt;4.5 ms acceptance threshold. Circuit-breaker outlier detection isolated simulated pod failures in <b>180 ms</b> (&lt;200 ms target), preserving <b>99.98% availability</b> with zero lost transactions. 100% of inter-pod packets were cryptographically encrypted via TLS 1.3.
+          </p>
+          <p style="margin-bottom: 3px;">
+            <b>Original Contribution &amp; Demonstrated Outcome:</b> The project demonstrated an automated identity bridge mapping edge JWT tokens into cryptographically verifiable internal SPIFFE identities, proven on an optimized edge-cloud prototype costing <b>&#8377;10,300</b> (a 94.6% hardware cost reduction compared to enterprise rack servers).
+          </p>
+          <p style="margin-bottom: 3px;">
+            <b>Keywords:</b> Cloud-Native Architecture, API Gateway, Istio Service Mesh, Mutual TLS (mTLS), Zero-Trust Architecture, Envoy Proxy, Distributed Tracing, Circuit Breaking, Airline Microservices.
+          </p>
+        </div>
+      </div>
+
+      <div style="border-top: 1px solid #cbd5e1; padding-top: 4px;">
+        <div style="font-size: 8.5pt; font-weight: bold; text-align: center; color: #1E3A8A; margin-bottom: 2px;">
+          PROJECT AT A GLANCE (FIGURE 0.1)
+        </div>
+        <div class="diagram-container" style="margin: 0 auto;">
+          ${fig01Svg}
+        </div>
+        <div class="figure-caption" style="margin-top: 1px; font-size: 7.5pt;">
+          Figure 0.1: Project at a Glance &ndash; Integrated Architectural Mechanism, Data Flows, and Empirical Evidence
+        </div>
+      </div>
+    </div>
+    ${renderFooter(7)}
+  </section>
+  `);

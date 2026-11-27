@@ -65,6 +65,7 @@ CREATE TABLE IF NOT EXISTS `booking` (
   `date` VARCHAR(255) NOT NULL,
   `nop` BIGINT NOT NULL DEFAULT 1,
   `total_price` BIGINT NOT NULL DEFAULT 0,
+  `seat_numbers` VARCHAR(255),
   PRIMARY KEY (`booking_id`),
   CONSTRAINT `fk_booking_flight` FOREIGN KEY (`flight_id`) REFERENCES `flight` (`flight_id`) ON DELETE CASCADE,
   CONSTRAINT `fk_booking_customer` FOREIGN KEY (`customer_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE
@@ -140,7 +141,7 @@ INSERT INTO `seat_details` (`seat_id`, `flight_id`, `seat_type`, `available_seat
 ON DUPLICATE KEY UPDATE `available_seats`=VALUES(`available_seats`);
 
 -- Seed Bookings
-INSERT INTO `booking` (`booking_id`, `customer_id`, `flight_id`, `seat_type`, `origin`, `destination`, `date`, `nop`, `total_price`) VALUES
-(1, 3, 1, 'Economy', 'New York (JFK)', 'Los Angeles (LAX)', '2026-07-04', 2, 300),
-(2, 3, 2, 'Business', 'London (LHR)', 'New Delhi (DEL)', '2026-07-05', 1, 900)
+INSERT INTO `booking` (`booking_id`, `customer_id`, `flight_id`, `seat_type`, `origin`, `destination`, `date`, `nop`, `total_price`, `seat_numbers`) VALUES
+(1, 3, 1, 'Economy', 'New York (JFK)', 'Los Angeles (LAX)', '2026-07-04', 2, 300, '12A,12B'),
+(2, 3, 2, 'Business', 'London (LHR)', 'New Delhi (DEL)', '2026-07-05', 1, 900, '1A')
 ON DUPLICATE KEY UPDATE `total_price`=VALUES(`total_price`);

@@ -1,0 +1,208 @@
+const fs = require('fs');
+const path = require('path');
+const outIllus = path.join(__dirname, 'assets', 'illustrations');
+
+// Performance Benchmarks Chart (Throughput & Latency across Baselines)
+const perfChartSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 400" width="920" height="400">
+  <defs>
+    <linearGradient id="barB1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="100%" stop-color="#0284C7"/>
+    </linearGradient>
+    <linearGradient id="barB2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#818CF8"/>
+      <stop offset="100%" stop-color="#4F46E5"/>
+    </linearGradient>
+    <linearGradient id="barFinal" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#34D399"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="920" height="400" fill="#0A0F24" rx="12"/>
+
+  <!-- Left: Throughput Comparison (RPS) -->
+  <g transform="translate(30, 30)">
+    <rect width="415" height="340" rx="10" fill="#0E1B38" stroke="#1E293B"/>
+    <text x="20" y="32" font-family="'Segoe UI', sans-serif" font-weight="bold" font-size="16" fill="#FFFFFF">Throughput (Sustained RPS)</text>
+    <text x="20" y="52" font-family="'Segoe UI', sans-serif" font-size="12" fill="#94A3B8">Higher is better • Acceptance Target: ≥ 1,500 RPS</text>
+
+    <!-- Baseline Target Line (1,500 RPS) -->
+    <line x1="45" y1="130" x2="385" y2="130" stroke="#F59E0B" stroke-width="1.5" stroke-dasharray="4,4"/>
+    <text x="260" y="124" font-family="'Segoe UI', sans-serif" font-weight="bold" font-size="11" fill="#FBBF24">Target Threshold: 1,500 RPS</text>
+
+    <!-- Chart Grid Baseline -->
+    <line x1="45" y1="270" x2="385" y2="270" stroke="#334155"/>
+
+    <!-- Bar 1: Baseline 1 (Direct Pod-to-Pod) -->
+    <g transform="translate(65, 0)">
+      <rect x="0" y="80" width="75" height="190" rx="6" fill="url(#barB1)"/>
+      <text x="12" y="70" font-family="'Segoe UI', sans-serif" font-weight="bold" font-size="14" fill="#38BDF8">2,180</text>
+      <text x="-5" y="295" font-family="'Segoe UI', sans-serif" font-size="11" fill="#CBD5E1">Direct Pod</text>
+      <text x="2" y="310" font-family="'Segoe UI', sans-serif" font-size="10" fill="#64748B">(No Proxy)</text>
+    </g>
+
+    <!-- Bar 2: Baseline 2 (Gateway Only) -->
+    <g transform="translate(170, 0)">
+      <rect x="0" y="98" width="75" height="172" rx="6" fill="url(#barB2)"/>
+      <text x="12" y="88" font-family="'Segoe UI', sans-serif" font-weight="bold" font-size="14" fill="#818CF8">1,960</text>
+      <text x="0" y="295" font-family="'Segoe UI', sans-serif" font-size="11" fill="#CBD5E1">Gateway</text>
+      <text x="-4" y="310" font-family="'Segoe UI', sans-serif" font-size="10" fill="#64748B">(No Mesh)</text>
+    </g>
+
+    <!-- Bar 3: Final System (Gateway + Istio Mesh) -->
+    <g transform="translate(275, 0)">
+      <rect x="0" y="108" width="75" height="162" rx="6" fill="url(#barFinal)"/>
+      <text x="12" y="98" font-family="'Segoe UI', sans-serif" font-weight="bold" font-size="14" fill="#34D399">1,840</text>
+      <text x="-2" y="295" font-family="'Segoe UI', sans-serif" font-weight="bold" font-size="11" fill="#34D399">Full Mesh</text>
+      <text x="2" y="310" font-family="'Segoe UI', sans-serif" font-size="10" fill="#10B981">(Project 7)</text>
+    </g>
+  </g>
+
+  <!-- Right: Latency Overhead (p99 Latency & Service Mesh Tax) -->
+  <g transform="translate(475, 30)">
+    <rect width="415" height="340" rx="10" fill="#0B232E" stroke="#1E293B"/>
+    <text x="20" y="32" font-family="'Segoe UI', sans-serif" font-weight="bold" font-size="16" fill="#FFFFFF">p99 Latency Overhead &amp; Mesh Tax</text>
+    <text x="20" y="52" font-family="'Segoe UI', sans-serif" font-size="12" fill="#94A3B8">Lower is better • Acceptance Target: &lt; 4.5 ms Mesh Tax</text>
+
+    <!-- Target Limit Line (<4.5ms) -->
+    <line x1="45" y1="120" x2="385" y2="120" stroke="#EF4444" stroke-width="1.5" stroke-dasharray="4,4"/>
+    <text x="240" y="114" font-family="'Segoe UI', sans-serif" font-weight="bold" font-size="11" fill="#F87171">Upper Threshold: 4.5 ms</text>
+
+    <line x1="45" y1="270" x2="385" y2="270" stroke="#334155"/>
+
+    <!-- Bar 1: Direct Pod -->
+    <g transform="translate(65, 0)">
+      <rect x="0" y="260" width="75" height="10" rx="3" fill="#64748B"/>
+      <text x="16" y="250" font-family="'Segoe UI', sans-serif" font-weight="bold" font-size="14" fill="#94A3B8">0.0 ms</text>
+      <text x="-5" y="295" font-family="'Segoe UI', sans-serif" font-size="11" fill="#CBD5E1">Direct Pod</text>
+      <text x="0" y="310" font-family="'Segoe UI', sans-serif" font-size="10" fill="#64748B">(Baseline)</text>
+    </g>
+
+    <!-- Bar 2: Gateway Only -->
+    <g transform="translate(170, 0)">
+      <rect x="0" y="210" width="75" height="60" rx="5" fill="url(#barB2)"/>
+      <text x="12" y="200" font-family="'Segoe UI', sans-serif" font-weight="bold" font-size="14" fill="#818CF8">+1.7 ms</text>
+      <text x="2" y="295" font-family="'Segoe UI', sans-serif" font-size="11" fill="#CBD5E1">Gateway</text>
+      <text x="0" y="310" font-family="'Segoe UI', sans-serif" font-size="10" fill="#64748B">(Edge Tax)</text>
+    </g>
+
+    <!-- Bar 3: Final System Mesh Tax -->
+    <g transform="translate(275, 0)">
+      <rect x="0" y="140" width="75" height="130" rx="5" fill="url(#barFinal)"/>
+      <text x="8" y="130" font-family="'Segoe UI', sans-serif" font-weight="bold" font-size="14" fill="#34D399">+3.82 ms</text>
+      <text x="-4" y="295" font-family="'Segoe UI', sans-serif" font-weight="bold" font-size="11" fill="#34D399">Mesh Tax</text>
+      <text x="-12" y="310" font-family="'Segoe UI', sans-serif" font-size="10" fill="#10B981">(Target &lt;4.5ms)</text>
+    </g>
+  </g>
+</svg>`;
+
+// Request Lifecycle and Zero-Trust Security Workflow
+const requestLifecycleSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 400" width="960" height="400">
+  <defs>
+    <linearGradient id="stepGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0E1B38"/>
+      <stop offset="100%" stop-color="#172554"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="960" height="400" fill="#070B19" rx="14"/>
+
+  <!-- 5 Horizontal Workflow Steps -->
+  <!-- Step 1 -->
+  <g transform="translate(20, 40)">
+    <rect width="170" height="320" rx="10" fill="url(#stepGrad)" stroke="#0070F3" stroke-width="1.5"/>
+    <circle cx="85" cy="40" r="22" fill="#0070F3"/>
+    <text x="85" y="47" font-family="'Segoe UI', sans-serif" font-weight="bold" font-size="18" fill="#FFFFFF" text-anchor="middle">1</text>
+    <text x="85" y="95" font-family="'Segoe UI', sans-serif" font-weight="bold" font-size="14" fill="#00F0FF" text-anchor="middle">TLS Termination</text>
+    <text x="85" y="115" font-family="'Segoe UI', sans-serif" font-size="11" fill="#94A3B8" text-anchor="middle">North-South Edge</text>
+
+    <g transform="translate(15, 140)" font-family="'Segoe UI', sans-serif" font-size="11" fill="#E2E8F0">
+      <text x="0" y="0">• Port 443 Ingress</text>
+      <text x="0" y="24">• ECDHE-ECDSA</text>
+      <text x="0" y="48">• 22% CPU Offload</text>
+      <text x="0" y="72">• SSL Labs Grade A</text>
+      <text x="0" y="96">• W3C Trace Inject</text>
+    </g>
+  </g>
+
+  <!-- Step 2 -->
+  <g transform="translate(205, 40)">
+    <rect width="170" height="320" rx="10" fill="url(#stepGrad)" stroke="#0284C7" stroke-width="1.5"/>
+    <circle cx="85" cy="40" r="22" fill="#0284C7"/>
+    <text x="85" y="47" font-family="'Segoe UI', sans-serif" font-weight="bold" font-size="18" fill="#FFFFFF" text-anchor="middle">2</text>
+    <text x="85" y="95" font-family="'Segoe UI', sans-serif" font-weight="bold" font-size="14" fill="#38BDF8" text-anchor="middle">Edge Rate Limit</text>
+    <text x="85" y="115" font-family="'Segoe UI', sans-serif" font-size="11" fill="#94A3B8" text-anchor="middle">Redis Token Bucket</text>
+
+    <g transform="translate(15, 140)" font-family="'Segoe UI', sans-serif" font-size="11" fill="#E2E8F0">
+      <text x="0" y="0">• 100 req/min/IP</text>
+      <text x="0" y="24">• Burst Buffer: 20</text>
+      <text x="0" y="48">• Redis Synced</text>
+      <text x="0" y="72">• Reject HTTP 429</text>
+      <text x="0" y="96">• DDOS Defense</text>
+    </g>
+  </g>
+
+  <!-- Step 3 -->
+  <g transform="translate(390, 40)">
+    <rect width="170" height="320" rx="10" fill="url(#stepGrad)" stroke="#6366F1" stroke-width="1.5"/>
+    <circle cx="85" cy="40" r="22" fill="#6366F1"/>
+    <text x="85" y="47" font-family="'Segoe UI', sans-serif" font-weight="bold" font-size="18" fill="#FFFFFF" text-anchor="middle">3</text>
+    <text x="85" y="95" font-family="'Segoe UI', sans-serif" font-weight="bold" font-size="14" fill="#A5B4FC" text-anchor="middle">JWT Validation</text>
+    <text x="85" y="115" font-family="'Segoe UI', sans-serif" font-size="11" fill="#94A3B8" text-anchor="middle">Cryptographic Filter</text>
+
+    <g transform="translate(15, 140)" font-family="'Segoe UI', sans-serif" font-size="11" fill="#E2E8F0">
+      <text x="0" y="0">• RS256 Signature</text>
+      <text x="0" y="24">• Public Key Verify</text>
+      <text x="0" y="48">• Claims: sub, role</text>
+      <text x="0" y="72">• 100% Tamper Block</text>
+      <text x="0" y="96">• HTTP 401 Reject</text>
+    </g>
+  </g>
+
+  <!-- Step 4 -->
+  <g transform="translate(575, 40)">
+    <rect width="170" height="320" rx="10" fill="url(#stepGrad)" stroke="#0D9488" stroke-width="1.5"/>
+    <circle cx="85" cy="40" r="22" fill="#0D9488"/>
+    <text x="85" y="47" font-family="'Segoe UI', sans-serif" font-weight="bold" font-size="18" fill="#FFFFFF" text-anchor="middle">4</text>
+    <text x="85" y="95" font-family="'Segoe UI', sans-serif" font-weight="bold" font-size="14" fill="#5EEAD4" text-anchor="middle">SPIFFE CA Identity</text>
+    <text x="85" y="115" font-family="'Segoe UI', sans-serif" font-size="11" fill="#94A3B8" text-anchor="middle">Citadel &amp; SDS</text>
+
+    <g transform="translate(15, 140)" font-family="'Segoe UI', sans-serif" font-size="11" fill="#E2E8F0">
+      <text x="0" y="0">• In-Cluster CA</text>
+      <text x="0" y="24">• X.509 SVID Certs</text>
+      <text x="0" y="48">• 24h Auto Rotation</text>
+      <text x="0" y="72">• Workload Identity</text>
+      <text x="0" y="96">• Zero Manual Keys</text>
+    </g>
+  </g>
+
+  <!-- Step 5 -->
+  <g transform="translate(760, 40)">
+    <rect width="180" height="320" rx="10" fill="url(#stepGrad)" stroke="#10B981" stroke-width="2"/>
+    <circle cx="90" cy="40" r="22" fill="#10B981"/>
+    <text x="90" y="47" font-family="'Segoe UI', sans-serif" font-weight="bold" font-size="18" fill="#FFFFFF" text-anchor="middle">5</text>
+    <text x="90" y="95" font-family="'Segoe UI', sans-serif" font-weight="bold" font-size="14" fill="#6EE7B7" text-anchor="middle">Strict East-West mTLS</text>
+    <text x="90" y="115" font-family="'Segoe UI', sans-serif" font-size="11" fill="#A7F3D0" text-anchor="middle">Envoy-to-Envoy Wire</text>
+
+    <g transform="translate(15, 140)" font-family="'Segoe UI', sans-serif" font-size="11" fill="#E2E8F0">
+      <text x="0" y="0">• TLS 1.3 AES-GCM</text>
+      <text x="0" y="24">• 100% Packets Crypt</text>
+      <text x="0" y="48">• Zero Cleartext</text>
+      <text x="0" y="72">• AuthorizationPolicy</text>
+      <text x="0" y="96">• 3.82ms p99 Overhead</text>
+    </g>
+  </g>
+
+  <!-- Connecting Arrows Between Steps -->
+  <g fill="#00F0FF">
+    <polygon points="194,195 202,200 194,205"/>
+    <polygon points="379,195 387,200 379,205"/>
+    <polygon points="564,195 572,200 564,205"/>
+    <polygon points="749,195 757,200 749,205"/>
+  </g>
+</svg>`;
+
+fs.writeFileSync(path.join(outIllus, 'performance_chart.svg'), perfChartSvg, 'utf8');
+fs.writeFileSync(path.join(outIllus, 'request_lifecycle_flow.svg'), requestLifecycleSvg, 'utf8');
+console.log('Saved performance_chart.svg and request_lifecycle_flow.svg');

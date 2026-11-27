@@ -1,0 +1,70 @@
+  // ================= PAGE 6: ACKNOWLEDGEMENTS & AI DISCLOSURE =================
+  pages.push(`
+  <section class="report-page" id="page-6" data-page="5">
+    ${renderHeader(6)}
+    <div class="page-content" style="justify-content: space-between;">
+      <div>
+        <h1 class="chapter-title" style="text-align: center; border-bottom: 2px solid #8B0000; padding-bottom: 3px; font-size: 11pt;">ACKNOWLEDGEMENTS</h1>
+        <p style="font-size: 8.2pt; line-height: 1.32; margin-bottom: 4px;">
+          We express our deepest gratitude to the leadership of <b>Koneru Lakshmaiah Education Foundation (Deemed to be University)</b> for providing a vibrant academic environment, cutting-edge software engineering laboratories, and access to cloud computing resources that enabled the successful execution of this capstone research.
+        </p>
+        <p style="font-size: 8.2pt; line-height: 1.32; margin-bottom: 4px;">
+          We extend our profound appreciation to our Faculty Guide, <b>Mr. BVN Prasad Paruchuri</b>, Assistant Professor, Department of Computer Science and Engineering, whose constant intellectual mentorship and architectural critiques guided this project across both semesters. We also sincerely thank <b>Mrs. P. Anusha</b>, Assistant Professor and Project Coordinator (CSE-3), for streamlining milestone reviews and Cluster A software engineering governance.
+        </p>
+        <p style="font-size: 8.2pt; line-height: 1.32; margin-bottom: 4px;">
+          We are immensely grateful to <b>Dr. A. Senthil</b>, Professor and Head of the Department of Computer Science and Engineering, for his visionary leadership, continuous encouragement, and departmental infrastructure support. Our heartfelt thanks are also due to the cloud-native open-source communities—particularly the <b>Cloud Native Computing Foundation (CNCF)</b>, the <b>Istio Project</b>, <b>Kong Inc.</b>, and the <b>Envoy Proxy</b> community—for developing the transparent software foundations that powered this work. Finally, we thank our parents and peers whose unwavering moral support made this engineering accomplishment possible.
+        </p>
+        <div style="font-size: 7.8pt; text-align: right; color: #334155; font-style: italic; margin-bottom: 8px;">
+          &mdash; Bandaru Sai Venkat Ram &bull; Davuluri Bala Gopal &bull; Akaramsetty Siva Sai &bull; Rohid Baig
+        </div>
+      </div>
+
+      <div style="border-top: 1.5px dashed #cbd5e1; padding-top: 6px;">
+        <h2 class="section-title" style="font-size: 9.8pt; text-align: center; color: #1E3A8A; margin-top: 0; margin-bottom: 4px;">
+          RESPONSIBLE USE OF AI AND DIGITAL TOOLS DISCLOSURE
+        </h2>
+        <p style="font-size: 8pt; line-height: 1.28; margin-bottom: 4px;">
+          In strict adherence to the university academic integrity policy, digital and AI-assisted tools utilized during project development and report authoring are formally disclosed below:
+        </p>
+        <table class="data-table" style="font-size: 7.5pt; line-height: 1.2;">
+          <thead>
+            <tr>
+              <th style="width: 18%;">Tool / Model</th>
+              <th style="width: 25%;">Purpose of Usage</th>
+              <th style="width: 20%;">Affected Artifact</th>
+              <th style="width: 25%;">Human Verification Performed</th>
+              <th style="width: 12%;">Data Exposed?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>GitHub Copilot</b></td>
+              <td>Boilerplate syntax auto-completion in Go, Java &amp; Python.</td>
+              <td>Microservice source code files (<code>services/*</code>).</td>
+              <td>100% of generated code reviewed, refactored, and verified via unit tests.</td>
+              <td>No (Open-source codebase only).</td>
+            </tr>
+            <tr>
+              <td><b>Grammarly</b></td>
+              <td>Grammar checking, typo identification, and passive voice reduction.</td>
+              <td>Report drafts (Chapters 1&ndash;10).</td>
+              <td>All suggestions manually evaluated and selectively approved by students.</td>
+              <td>No (Academic text only).</td>
+            </tr>
+            <tr>
+              <td><b>Docker Scout / Trivy</b></td>
+              <td>Automated static container vulnerability scanning.</td>
+              <td>Docker container images.</td>
+              <td>Vulnerability CVE reports analyzed and packages upgraded manually.</td>
+              <td>No.</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="callout-box" style="font-size: 7.8pt; line-height: 1.25; margin-top: 4px;">
+          <b>Declaration:</b> No proprietary, personal, or confidential institutional data was submitted to external AI tools. All engineering claims, benchmark measurements, and architecture decisions reflect original work executed by the student team.
+        </div>
+      </div>
+    </div>
+    ${renderFooter(6)}
+  </section>
+  `);

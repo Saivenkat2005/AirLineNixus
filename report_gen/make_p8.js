@@ -1,0 +1,14 @@
+const fs = require('fs');
+const orig = fs.readFileSync('report_gen/prelim_pages.js', 'utf8');
+const p7 = orig.indexOf('PAGE 7:');
+const p8 = orig.indexOf('PAGE 8:');
+const line7 = orig.lastIndexOf('\n', p7);
+const line8 = orig.lastIndexOf('\n', p8);
+let p8Chunk = orig.substring(line7 + 1, line8);
+p8Chunk = p8Chunk.split('page-7').join('page-8');
+p8Chunk = p8Chunk.split('renderHeader(7)').join('renderHeader(8)');
+p8Chunk = p8Chunk.split('renderFooter(7)').join('renderFooter(8)');
+p8Chunk = p8Chunk.split('PAGE 7:').join('PAGE 8:');
+p8Chunk = p8Chunk.replace('<tr><td class="toc-ch">Student Declaration &amp; Project Completion Certificate</td><td class="toc-page">3</td></tr>\n            <tr><td class="toc-ch">Approval and Evaluation Sheet</td><td class="toc-page">4</td></tr>\n            <tr><td class="toc-ch">Acknowledgements &amp; Responsible AI Tool Disclosure</td><td class="toc-page">5</td></tr>\n            <tr><td class="toc-ch">Structured Abstract &amp; Project at a Glance (Figure 0.1)</td><td class="toc-page">6</td></tr>\n            <tr><td class="toc-ch">Table of Contents</td><td class="toc-page">7</td></tr>\n            <tr><td class="toc-ch">List of Figures &amp; List of Tables</td><td class="toc-page">8</td></tr>\n            <tr><td class="toc-ch">List of Abbreviations and Acronyms &amp; Team Role Distribution</td><td class="toc-page">9</td></tr>', '<tr><td class="toc-ch">Candidates Declaration (Student Declaration)</td><td class="toc-page">3</td></tr>\n            <tr><td class="toc-ch">Project Completion Certificate</td><td class="toc-page">4</td></tr>\n            <tr><td class="toc-ch">Approval and Evaluation Sheet</td><td class="toc-page">5</td></tr>\n            <tr><td class="toc-ch">Acknowledgements &amp; Responsible AI Tool Disclosure</td><td class="toc-page">6</td></tr>\n            <tr><td class="toc-ch">Structured Abstract &amp; Project at a Glance (Figure 0.1)</td><td class="toc-page">7</td></tr>\n            <tr><td class="toc-ch">Table of Contents</td><td class="toc-page">8</td></tr>\n            <tr><td class="toc-ch">List of Figures, Tables, Abbreviations &amp; Team Work Packages</td><td class="toc-page">9</td></tr>');
+fs.writeFileSync('report_gen/p8_out.txt', p8Chunk, 'utf8');
+console.log('Wrote p8_out.txt successfully');

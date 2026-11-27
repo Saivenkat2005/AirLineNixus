@@ -1,0 +1,110 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-core-service
+  labels:
+    app: core-service
+    release: {{ .Release.Name }}
+spec:
+  replicas: {{ .Values.coreService.replicaCount }}
+  selector:
+    matchLabels:
+      app: core-service
+  template:
+    metadata:
+      labels:
+        app: core-service
+        version: v1
+    spec:
+      containers:
+      - name: core-service
+        image: "{{ .Values.coreService.image.repository }}:{{ .Values.coreService.image.tag }}"
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+          name: http
+        env:
+        - name: SPRING_DATASOURCE_URL
+          value: "jdbc:mysql://mysql:3306/airlines"
+        - name: SPRING_REDIS_HOST
+          value: "redis"
+        - name: SPRING_KAFKA_BOOTSTRAP_SERVERS
+          value: "kafka:9092"
+        livenessProbe:
+          httpGet:
+            path: /actuator/health/liveness
+            port: 8080
+          initialDelaySeconds: 40
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /actuator/health/readiness
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 5
+        resources:
+          {{- toYaml .Values.coreService.resources | nindent 10 }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-ai-service
+  labels:
+    app: ai-service
+    release: {{ .Release.Name }}
+spec:
+  replicas: {{ .Values.aiService.replicaCount }}
+  selector:
+    matchLabels:
+      app: ai-service
+  template:
+    metadata:
+      labels:
+        app: ai-service
+    spec:
+      containers:
+      - name: ai-service
+        image: "{{ .Values.aiService.image.repository }}:{{ .Values.aiService.image.tag }}"
+        ports:
+        - containerPort: 8000
+          name: http
+        livenessProbe:
+          httpGet:
+            path: /api/ai/health
+            port: 8000
+          initialDelaySeconds: 15
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /api/ai/health
+            port: 8000
+          initialDelaySeconds: 10
+          periodSeconds: 5
+        resources:
+          {{- toYaml .Values.aiService.resources | nindent 10 }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-frontend
+  labels:
+    app: frontend
+    release: {{ .Release.Name }}
+spec:
+  replicas: {{ .Values.frontend.replicaCount }}
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - name: frontend
+        image: "{{ .Values.frontend.image.repository }}:{{ .Values.frontend.image.tag }}"
+        ports:
+        - containerPort: 80
+          name: http
+        resources:
+          {{- toYaml .Values.frontend.resources | nindent 10 }}

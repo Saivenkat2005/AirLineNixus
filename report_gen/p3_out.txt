@@ -1,0 +1,33 @@
+PAGE 3: CANDIDATES DECLARATION & COMPLETION CERTIFICATE =================
+  pages.push(`
+  <section class="report-page" id="page-3" data-page="3">
+    ${renderHeader(3)}
+    <div class="page-content" style="justify-content: space-between; padding-top: 15px; padding-bottom: 10px;">
+      <div>
+        <h1 class="chapter-title" style="text-align: center; border-bottom: 2px solid #8B0000; padding-bottom: 6px; font-size: 13pt; letter-spacing: 1px; margin-bottom: 20px;">CANDIDATES DECLARATION</h1>
+        <div class="callout-note" style="margin: 6px 0; font-size: 9.5pt; line-height: 1.65; margin: 18px 0; padding: 16px 20px;">
+          <b>Declaration:</b> We hereby declare that the capstone final project report entitled <b>"Cloud-Native API Gateway and Service Mesh Architecture"</b> is an authentic record of the bona fide capstone work carried out by us under the supervision of <b>Mr. BVN Prasad Paruchuri</b>, Assistant Professor, Department of Computer Science and Engineering, KLEF College of Engineering. The engineering work, methodologies, and results presented in this report are fully traceable to the submitted Cluster A research diary and evidence index. All sources, adapted artifacts, datasets, open-source software, and digital tools have been formally cited and disclosed in strict compliance with university academic integrity regulations. This report has not been submitted in part or full elsewhere for any other degree, diploma, or academic award. Confidential, personal, and institutional data have been handled in complete conformity with applicable institutional policies and privacy regulations.
+        </div>
+        <table style="width: 100%; border-collapse: collapse; font-size: 8.8pt; margin-top: 35px; line-height: 1.6;">
+          <thead>
+            <tr style="border-bottom: 1px solid #94a3b8; background: #f8fafc;">
+              <th style="padding: 2px 4px; text-align: left;">Student Name</th>
+              <th style="padding: 2px 4px; text-align: center;">University ID</th>
+              <th style="padding: 2px 4px; text-align: center;">Signature</th>
+              <th style="padding: 2px 4px; text-align: right;">Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td style="padding: 10px 8px; font-weight: bold;">BANDARU SAI VENKAT RAM</td><td style="text-align: center;">2300031764</td><td style="text-align: center;">_______________________</td><td style="text-align: right;">____ / ____ / 2026</td></tr>
+            <tr><td style="padding: 10px 8px; font-weight: bold;">DAVULURI BALA GOPAL</td><td style="text-align: center;">2300032878</td><td style="text-align: center;">_______________________</td><td style="text-align: right;">____ / ____ / 2026</td></tr>
+            <tr><td style="padding: 10px 8px; font-weight: bold;">AKARAMSETTY SIVA SAI</td><td style="text-align: center;">2300033233</td><td style="text-align: center;">_______________________</td><td style="text-align: right;">____ / ____ / 2026</td></tr>
+            <tr><td style="padding: 10px 8px; font-weight: bold;">ROHID BAIG</td><td style="text-align: center;">2300039146</td><td style="text-align: center;">_______________________</td><td style="text-align: right;">____ / ____ / 2026</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      
+    </div>
+    
+  </section>
+  );

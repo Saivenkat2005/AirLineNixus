@@ -1,0 +1,16 @@
+{
+  "name": "airline-nexus-playwright-automation",
+  "version": "2.0.0",
+  "description": "Enterprise-grade Playwright E2E UI Test Automation Framework for Airline Nexus",
+  "main": "playwright.config.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:ai": "playwright test specs/ai-copilot.spec.js",
+    "test:booking": "playwright test specs/booking-flow.spec.js",
+    "report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.0"
+  }
+}

@@ -1,0 +1,10 @@
+const fs = require('fs');
+const certRaw = fs.readFileSync('report_gen/cert_raw.txt', 'utf8');
+let p4 = certRaw.split('renderFooter(3)').join('renderFooter(4)');
+p4 = p4.split('font-size: 8.2pt; line-height: 1.32;').join('font-size: 9.2pt; line-height: 1.6; margin: 15px 0; padding: 16px 20px;');
+p4 = p4.split('font-size: 8pt; margin-top: 8px;').join('font-size: 8.8pt; margin-top: 35px;');
+p4 = p4.split('padding: 4px 6px;').join('padding: 12px 14px 20px 14px;');
+p4 = p4.split('padding-bottom: 3px; font-size: 11pt;').join('padding-bottom: 6px; font-size: 13pt; letter-spacing: 1px; margin-bottom: 20px;');
+p4 = '  // ================= PAGE 4: PROJECT COMPLETION CERTIFICATE (DEDICATED PAGE) =================\n  pages.push(\n  <section class="report-page" id="page-4" data-page="4">\n    \n    <div class="page-content" style="justify-content: space-between; padding-top: 15px; padding-bottom: 10px;">\n      <div>' + p4;
+fs.writeFileSync('report_gen/p4_out.txt', p4, 'utf8');
+console.log('Wrote p4_out.txt successfully');
